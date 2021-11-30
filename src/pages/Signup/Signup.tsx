@@ -2,8 +2,14 @@ import React, { useState } from 'react'
 import SignupForm from '../../components/SignupForm'
 // import styles from './Signup.module.css'
 import {Box, Grid, Card, Typography, Divider,Chip } from '@mui/material';
+import {MemoryHistory} from 'history'
 
-function Signup() {
+interface IProps {
+  history: MemoryHistory,
+  handleSignupOrLogin: () => Promise<void>,
+}
+
+const Signup: React.FC<IProps> = ({history, handleSignupOrLogin}) => {
 
   const [message, setMessage] = useState('')
 
@@ -17,7 +23,11 @@ function Signup() {
         <Box mr={5} my={3} >
         <Divider/>
         </Box>
-        <SignupForm message={message} setMessage={setMessage} />
+        <SignupForm 
+          history={history} 
+          handleSignupOrLogin={handleSignupOrLogin}
+          message={message} 
+          setMessage={setMessage} />
         </Box>
         <div className='player-wrapper'>
             

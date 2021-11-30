@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-// import * as authService from '../../services/authService'
+import * as authService from '../services/authService'
 import {Box,  Button, TextField } from '@mui/material';
+import {MemoryHistory} from 'history'
+
 
 // interface IState {
 //     user: {
@@ -13,11 +15,13 @@ import {Box,  Button, TextField } from '@mui/material';
 // }
 
 interface IProps {
+    history: MemoryHistory,
+    handleSignupOrLogin: () => Promise<void>,
     message: string,
     setMessage: React.Dispatch<React.SetStateAction<string>>
 }
 
-const SignupForm: React.FC<IProps> = () => {
+const SignupForm: React.FC<IProps> = (props) => {
 
     const [input, setInput] = useState({
             name: '',
@@ -35,15 +39,15 @@ const SignupForm: React.FC<IProps> = () => {
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    // const { history, updateMessage, handleSignupOrLogin } = props
-    // e.preventDefault()
-    // try {
-    //   await authService.signup(state)
-    //   handleSignupOrLogin()
-    //   history.push('/')
-    // } catch (err) {
-    //   updateMessage(err.message)
-    // }
+    const { history, setMessage, handleSignupOrLogin } = props
+    e.preventDefault()
+    try {
+      await authService.signup(input)
+      handleSignupOrLogin()
+      history.push('/')
+    } catch (err: any) {
+        setMessage(err.message)
+    }
   }
 
   const isFormInvalid = () => {
@@ -112,7 +116,6 @@ const SignupForm: React.FC<IProps> = () => {
 
          </div>
       </form>
-    // <div>SignupForm</div>
     )
 
 }
