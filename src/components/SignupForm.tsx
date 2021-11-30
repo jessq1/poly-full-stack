@@ -5,15 +5,6 @@ import {Box,  Button, TextField } from '@mui/material';
 import {MemoryHistory} from 'history'
 
 
-// interface IState {
-//     user: {
-//         name: string,
-//         email: string,
-//         password: string,
-//         passwordConf: string,
-//     }[]
-// }
-
 interface IProps {
     history: MemoryHistory,
     handleSignupOrLogin: () => Promise<void>,
@@ -31,7 +22,7 @@ const SignupForm: React.FC<IProps> = (props) => {
     })
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement> ) => {
-//     props.updateMessage('')
+    props.setMessage('')
     setInput({
         ...input,
         [e.target.name]: e.target.value,
