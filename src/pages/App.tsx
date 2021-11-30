@@ -1,7 +1,8 @@
 import React from 'react';
-import Header from '../components/Header';
 import { Routes, Route } from 'react-router-dom'
 
+import Header from '../components/Header';
+import Signup from './Signup/Signup';
 
 // styles:
 import {ThemeProvider} from '@mui/material/styles';
@@ -12,8 +13,8 @@ function App() {
     <ThemeProvider theme={theme}>
         <Header title = 'poly'/>
         <Routes>
-        <Route path='/landing'>
-        		</Route>
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/landing' />
         </Routes>
     </ThemeProvider>
   );
