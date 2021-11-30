@@ -1,7 +1,7 @@
 import * as tokenService from './tokenService'
 const BASE_URL = '/api/auth/'
 
-function signup(user) {
+function signup(user:any) {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: new Headers({ 'Content-Type': 'application/json' }),
@@ -30,7 +30,7 @@ function logout() {
   tokenService.removeToken()
 }
 
-function login(creds) {
+function login(creds:any) {
   return fetch(BASE_URL + "login", {
     method: "POST",
     headers: new Headers({ "Content-Type": "application/json" }),

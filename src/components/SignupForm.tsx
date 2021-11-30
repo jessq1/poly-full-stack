@@ -12,7 +12,12 @@ import {Box,  Button, TextField } from '@mui/material';
 //     }[]
 // }
 
-function SignupForm() {
+interface IProps {
+    message: string,
+    setMessage: React.Dispatch<React.SetStateAction<string>>
+}
+
+const SignupForm: React.FC<IProps> = () => {
 
     const [input, setInput] = useState({
             name: '',
@@ -29,21 +34,21 @@ function SignupForm() {
     })
   }
 
-//   handleSubmit = async e => {
-//     const { history, updateMessage, handleSignupOrLogin } = props
-//     e.preventDefault()
-//     try {
-//       await authService.signup(state)
-//       handleSignupOrLogin()
-//       history.push('/')
-//     } catch (err) {
-//       updateMessage(err.message)
-//     }
-//   }
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    // const { history, updateMessage, handleSignupOrLogin } = props
+    // e.preventDefault()
+    // try {
+    //   await authService.signup(state)
+    //   handleSignupOrLogin()
+    //   history.push('/')
+    // } catch (err) {
+    //   updateMessage(err.message)
+    // }
+  }
 
   const isFormInvalid = () => {
     const { name, email, password, passwordConf } = input
-    return !(name && email && password === passwordConf)
+    return !(name && email && password === passwordConf && password !== '')
   }
 
 
@@ -51,7 +56,7 @@ function SignupForm() {
     return (
       <form
         autoComplete="off"
-    //     onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
       >
          <div >
            <TextField
