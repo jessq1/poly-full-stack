@@ -22,10 +22,5 @@
   },
   "include": [
     "src",
-    "config",
-    "controllers",
-    "middleware",
-    "models",
-    "routes"
   ]
 }
