@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import * as authService from '../services/authService'
-import {Box,  Button, TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import {MemoryHistory} from 'history'
 
 
@@ -12,13 +12,11 @@ interface IProps {
     setMessage: React.Dispatch<React.SetStateAction<string>>
 }
 
-const SignupForm: React.FC<IProps> = (props) => {
+const LoginForm: React.FC<IProps> = (props) => {
 
     const [input, setInput] = useState({
-            name: '',
             email: '',
             password: '',
-            passwordConf: '',
     })
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement> ) => {
@@ -30,41 +28,23 @@ const SignupForm: React.FC<IProps> = (props) => {
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    const { history, setMessage, handleSignupOrLogin } = props
+    const { history, handleSignupOrLogin } = props
     e.preventDefault()
     try {
-      await authService.signup(input)
+      await authService.login(input)
       handleSignupOrLogin()
       history.push('/')
     } catch (err: any) {
-        setMessage(err.message)
+      alert('Invalid Credentials')
     }
   }
 
-  const isFormInvalid = () => {
-    const { name, email, password, passwordConf } = input
-    return !(name && email && password === passwordConf && password !== '')
-  }
-
-
-    const { name, email, password, passwordConf } = input
+    const { email, password } = input
     return (
       <form
         autoComplete="off"
         onSubmit={handleSubmit}
       >
-         <div >
-           <TextField
-             type="text"
-             autoComplete="off"
-             id="name"
-             value={name}
-             name="name"
-             onChange={handleChange}
-             label="Name"
-             variant="outlined"
-           />
-         </div>
          <div >
            <TextField
              type="text"
@@ -90,25 +70,13 @@ const SignupForm: React.FC<IProps> = (props) => {
            />
          </div>
          <div >
-           <TextField
-             type="password"
-             autoComplete="off"
-             id="confirm"
-             value={passwordConf}
-             name="passwordConf"
-             onChange={handleChange}
-             label="Confirm Password"
-             variant="outlined"
-           />
-         </div>
-         <div >
-           <Button  color={'primary'} variant="outlined" type='submit' disabled={isFormInvalid()} >Sign Up</Button>
+           <Button  color={'primary'} variant="outlined" type='submit' >Login</Button>
            <Button component={Link} to="/"color={'primary'}variant="outlined" >Cancel</Button>
-         </div>
 
+         </div>
       </form>
     )
 
 }
 
-export default SignupForm
+export default LoginForm

@@ -2,7 +2,6 @@ import * as tokenService from './tokenService'
 const BASE_URL = '/api/auth/'
 
 function signup(user:any) {
-    console.log('check')
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: new Headers({ 'Content-Type': 'application/json' }),
