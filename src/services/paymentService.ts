@@ -1,5 +1,5 @@
 import * as tokenService from '../services/tokenService'
-const BASE_URL = '/api/Payments'
+const BASE_URL = '/api/payments'
 
 function createPayment(paymentData: any) {
   return fetch(BASE_URL, {

@@ -10,6 +10,7 @@ interface IProps {
 interface State {
     amount: string;
     person: string;
+    method: string;
   }
 
 const AddPayment: React.FC<IProps> = (props) => {
@@ -17,6 +18,7 @@ const AddPayment: React.FC<IProps> = (props) => {
   const [formData, setFormData] = useState({
     amount: '',
     person: '',
+    method: 'pay'
   })
 
   const handleChange =
@@ -33,7 +35,7 @@ const AddPayment: React.FC<IProps> = (props) => {
       console.log(err)
     }
   }
-  const { amount, person } = formData
+  const { amount, person, method } = formData
 
   const isFormInvalid = () => {
     return !(parseInt(amount) && person)
@@ -63,8 +65,18 @@ const AddPayment: React.FC<IProps> = (props) => {
             onChange={handleChange('person')}
           />
         </FormControl>
-      <Button color={'primary'} variant="outlined" type='submit' name='pay' disabled={isFormInvalid()}>Pay</Button>
-      <Button color={'primary'} variant="outlined" type='submit' name='request' disabled={isFormInvalid()} >Request</Button>
+      <Button color={'primary'} variant="outlined" 
+        type='submit' name='pay' 
+        onClick={() => (setFormData({ ...formData, method: 'pay' }))} 
+        disabled={isFormInvalid()}>
+            Pay
+        </Button>
+      <Button color={'primary'} variant="outlined" 
+        type='submit' name='request' 
+        onClick={() => (setFormData({ ...formData, method: 'request' }))} 
+        disabled={isFormInvalid()} >
+            Request
+        </Button>
     </form>
     </>
   );

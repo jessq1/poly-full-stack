@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom'
 
-import Box from '@mui/material/Box';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
@@ -11,7 +10,7 @@ import { MdOutlineEventAvailable } from "react-icons/md";
 
 const actions = [
   { icon: <Link to='/events'><MdOutlineEventAvailable fontSize={23}/></Link>, name: 'Add Event' },
-  { icon: <Link to='/payments'><BiDollar fontSize={23}/></Link>, name: 'Add Payment' },
+  { icon: <Link to='/addpayment'><BiDollar fontSize={23}/></Link>, name: 'Add Payment' },
 ];
 
 export default function SpeedAdd() {
