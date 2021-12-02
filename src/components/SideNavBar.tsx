@@ -55,19 +55,19 @@ export default function SideNavBar(props: NavProps) {
         </DrawerHeader>
         <Divider />
         <List>
-            <ListItem button key='Payments' >
+            <ListItem button key='Payments'component={Link} to='/payments' >
                 <ListItemIcon>
                     <PeopleIcon fontSize='large' />
                 </ListItemIcon>
                 <ListItemText primary='Payments' />
             </ListItem>
-            <ListItem button key='Events' >
+            <ListItem button key='Events' component={Link} to='/events'>
                 <ListItemIcon>
                     <EventIcon fontSize='large' />
                 </ListItemIcon>
                 <ListItemText primary='Events' />
             </ListItem>
-            <ListItem button key='Notifications' >
+            <ListItem button key='Notifications' component={Link} to='/notifications'>
                 <ListItemIcon>
                     <InboxIcon fontSize='large' />
                 </ListItemIcon>
