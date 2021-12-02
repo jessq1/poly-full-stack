@@ -5,13 +5,13 @@ import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom'
 
 
-interface HeaderProps {
+interface NavProps {
   title: string,
   user: any,
   handleLogout: () => void
 }
 
-export default function Header(props: HeaderProps) {
+export default function NavBar(props: NavProps) {
   const { title, user, handleLogout } = props;
 
   return (

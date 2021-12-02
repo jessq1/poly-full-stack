@@ -8,6 +8,7 @@ import * as profileAPI from '../services/profileService'
 
 // Component and pages
 import NavBar from '../components/NavBar';
+import SideNavBar from '../components/SideNavBar';
 import Signup from './Signup/Signup';
 import Login from './Login/Login';
 import Landing from './Landing/Landing'
@@ -36,7 +37,7 @@ function App() {
 	}
   return (
     <ThemeProvider theme={theme}>
-        <NavBar title = 'poly' user={info.user} handleLogout={handleLogout}/>
+        <SideNavBar title = 'poly' user={info.user} handleLogout={handleLogout}/>
         <Routes>
         
           <Route path='/' element={<Landing user={info.user} />} />
