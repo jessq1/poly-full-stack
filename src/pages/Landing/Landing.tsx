@@ -9,9 +9,11 @@ const Landing: React.FC<IProps> = ({user}) => {
       return (
         <>
           
-          <div className='player-wrapper'>
-          <p>hello</p>
-          </div>
+          <main >
+            <h1>
+              hello, {user ? user.name : "friend"}
+            </h1>
+          </main>
   
         </>
       )
