@@ -16,7 +16,8 @@ import { drawerWidth, openedMixin, closedMixin, DrawerHeader } from '../styles/n
 interface NavProps {
     user: any,
     open?: boolean,
-    handleDrawerClose: () => void
+    handleDrawerClose: () => void,
+    children?: JSX.Element | JSX.Element[],
   }
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -38,7 +39,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function SideNavBar(props: NavProps) {
   const theme = useTheme();
-  const { user, open, handleDrawerClose } = props;
+  const { user, open, handleDrawerClose, children } = props;
 
 
   return (
@@ -76,7 +77,7 @@ export default function SideNavBar(props: NavProps) {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        
+        {children}
       </Box>
     </Box>
   );

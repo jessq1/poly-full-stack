@@ -47,14 +47,14 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
         <NavBar title = 'poly' user={info.user} handleLogout={handleLogout} open={open} handleDrawerOpen={handleDrawerOpen} />
-        <SideNavBar  user={info.user} open={open} handleDrawerClose={handleDrawerClose} />
+        <SideNavBar  user={info.user} open={open} handleDrawerClose={handleDrawerClose} >
+          <Routes>
 
-        <Routes>
-        
-          <Route path='/' element={<Landing user={info.user} />} />
-          <Route path='/signup' element={<Signup history={history} handleSignupOrLogin={handleSignupOrLogin} />} />
-          <Route path='/login' element={<Login history={history} handleSignupOrLogin={handleSignupOrLogin} />} />
-        </Routes>
+            <Route path='/' element={<Landing user={info.user} />} />
+            <Route path='/signup' element={<Signup history={history} handleSignupOrLogin={handleSignupOrLogin} />} />
+            <Route path='/login' element={<Login history={history} handleSignupOrLogin={handleSignupOrLogin} />} />
+          </Routes>
+        </SideNavBar>
     </ThemeProvider>
   );
 }
