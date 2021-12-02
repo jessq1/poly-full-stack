@@ -2,6 +2,8 @@ import * as React from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom'
+
 
 interface HeaderProps {
   title: string;
@@ -24,7 +26,7 @@ export default function Header(props: HeaderProps) {
             {title}
         </Typography>
         
-        <Button variant="outlined" size="small">
+        <Button variant="outlined" size="small" component={Link} to='/signup'>
           Sign up
         </Button>
       </Toolbar>
