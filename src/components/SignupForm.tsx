@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import * as authService from '../services/authService'
 import {Box,  Button, TextField } from '@mui/material';
 import {MemoryHistory} from 'history'
@@ -14,6 +14,7 @@ interface IProps {
 
 const SignupForm: React.FC<IProps> = (props) => {
 
+    const navigate = useNavigate()
     const [input, setInput] = useState({
             name: '',
             email: '',
@@ -30,12 +31,12 @@ const SignupForm: React.FC<IProps> = (props) => {
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    const { history, setMessage, handleSignupOrLogin } = props
+    const { setMessage, handleSignupOrLogin } = props
     e.preventDefault()
     try {
       await authService.signup(input)
       handleSignupOrLogin()
-      history.push('/')
+      navigate('/')
     } catch (err: any) {
         setMessage(err.message)
     }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import * as authService from '../services/authService'
 import { Button, TextField } from '@mui/material';
 import {MemoryHistory} from 'history'
@@ -19,6 +19,8 @@ const LoginForm: React.FC<IProps> = (props) => {
             password: '',
     })
 
+    const navigate = useNavigate()
+
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement> ) => {
     props.setMessage('')
     setInput({
@@ -28,12 +30,12 @@ const LoginForm: React.FC<IProps> = (props) => {
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    const { history, handleSignupOrLogin } = props
+    const { handleSignupOrLogin } = props
     e.preventDefault()
     try {
       await authService.login(input)
       handleSignupOrLogin()
-      history.push('/')
+      navigate('/')
     } catch (err: any) {
       alert('Invalid Credentials')
     }

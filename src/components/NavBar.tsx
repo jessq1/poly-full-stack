@@ -6,11 +6,13 @@ import { Link } from 'react-router-dom'
 
 
 interface HeaderProps {
-  title: string;
+  title: string,
+  user: any,
+  handleLogout: () => void
 }
 
 export default function Header(props: HeaderProps) {
-  const { title } = props;
+  const { title, user, handleLogout } = props;
 
   return (
     <React.Fragment>
@@ -25,10 +27,12 @@ export default function Header(props: HeaderProps) {
         >
             {title}
         </Typography>
-        
-        <Button variant="outlined" size="small" component={Link} to='/signup'>
+        {user? <Button variant="outlined" size="small" component={Link} to='' onClick={handleLogout}>
+          Log Out
+        </Button> : <Button variant="outlined" size="small" component={Link} to='/signup'>
           Sign up
-        </Button>
+        </Button>}
+        
       </Toolbar>
       <Toolbar
         component="nav"
