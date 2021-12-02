@@ -25,6 +25,15 @@ function App() {
     user: authService.getUser(),
 		userProfile: null,
 })
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
 
   const handleLogout = () => {
     authService.logout()
@@ -37,7 +46,9 @@ function App() {
 	}
   return (
     <ThemeProvider theme={theme}>
-        <SideNavBar title = 'poly' user={info.user} handleLogout={handleLogout}/>
+        <NavBar title = 'poly' user={info.user} handleLogout={handleLogout} open={open} handleDrawerOpen={handleDrawerOpen} />
+        <SideNavBar  user={info.user} open={open} handleDrawerClose={handleDrawerClose} />
+
         <Routes>
         
           <Route path='/' element={<Landing user={info.user} />} />
