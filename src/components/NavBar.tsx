@@ -46,7 +46,7 @@ export default function NavBar(props: NavProps) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" color="default" open={open}>
+      <AppBar elevation={1} position="fixed" color="transparent" open={open}>
       <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <IconButton
             color="inherit"
@@ -58,7 +58,7 @@ export default function NavBar(props: NavProps) {
               ...(open && { display: 'none' }),
             }}
           >
-            <CgMenuGridO />
+            <CgMenuGridO fontSize={30} />
           </IconButton>
         <Typography
           component="h2"
