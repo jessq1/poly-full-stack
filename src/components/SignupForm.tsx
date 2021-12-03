@@ -10,6 +10,7 @@ interface IProps {
     handleSignupOrLogin: () => Promise<void>,
     message: string,
     setMessage: React.Dispatch<React.SetStateAction<string>>
+    userProfile: any,
 }
 
 const SignupForm: React.FC<IProps> = (props) => {

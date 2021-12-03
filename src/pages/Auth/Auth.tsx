@@ -3,12 +3,17 @@ import * as profileService from '../../services/profileService'
 
 interface IProps {
   user: any,
+  userProfile: any
 }
 
-const Auth: React.FC<IProps> = ({user}) => {
+const Auth: React.FC<IProps> = ({user, userProfile}) => {
     useEffect(()=> {
-        profileService.directToStripeAuth()
-      }, [])
+        async function fetchUrl(userProfile: any){
+            const url = await profileService.directToStripeAuth(userProfile)
+            console.log('url')
+        }
+        fetchUrl(userProfile)
+      }, [userProfile])
 
       return (
         <>

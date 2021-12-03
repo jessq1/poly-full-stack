@@ -1,3 +1,4 @@
+
 import React, {Component, useState, useEffect } from 'react';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import { createMemoryHistory } from 'history';
@@ -38,13 +39,10 @@ function App() {
   const [open, setOpen] = React.useState(false);
   const [payments, setPayments] = useState<any>([])
 
-  // profileService.getUserProfile().then(res=>console.log(res))
-
   useEffect( () => {
     async function fetchProfile(){
       if (!info.userProfile){
         const profile = await profileService.getUserProfile()
-        console.log(profile)
         setInfo({
           ...info,
           userProfile: profile,
@@ -84,9 +82,9 @@ function App() {
           <Routes>
 
             <Route path='/' element={<Landing user={info.user} />} />
-            <Route path='/signup' element={<Signup history={history} handleSignupOrLogin={handleSignupOrLogin} />} />
+            <Route path='/signup' element={<Signup history={history} handleSignupOrLogin={handleSignupOrLogin} userProfile={info.userProfile} />} />
             <Route path='/login' element={<Login history={history} handleSignupOrLogin={handleSignupOrLogin} />} />
-            <Route path='/stripeauth' element={<Auth user={info.user} />} />
+            <Route path='/stripeauth' element={<Auth user={info.user} userProfile={info.userProfile} />} />
             <Route path='/addpayment' element={<AddPayment handleCreatePayment={handleCreatePayment} />}  />
           </Routes>
         </SideNavBar>
