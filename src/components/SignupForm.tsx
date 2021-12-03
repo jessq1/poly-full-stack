@@ -37,7 +37,7 @@ const SignupForm: React.FC<IProps> = (props) => {
     try {
       await authService.signup(input)
       handleSignupOrLogin()
-      navigate('/')
+      navigate('/stripeauth')
     } catch (err: any) {
         setMessage(err.message)
     }
