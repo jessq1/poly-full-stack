@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import SignupForm from '../../components/SignupForm'
 // import styles from './Signup.module.css'
-import {Box, Grid, Card, Typography, Divider,Chip } from '@mui/material';
-import {MemoryHistory} from 'history'
+import { Box, Typography, Divider } from '@mui/material';
+import { MemoryHistory } from 'history'
 
 interface IProps {
   history: MemoryHistory,
