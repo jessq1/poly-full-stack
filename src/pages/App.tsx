@@ -1,4 +1,3 @@
-
 import React, {Component, useState, useEffect } from 'react';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import { createMemoryHistory } from 'history';
@@ -7,7 +6,6 @@ import { createMemoryHistory } from 'history';
 import * as authService from '../services/authService'
 import * as profileService from '../services/profileService'
 import { createPayment, getPayments, deletePayment, updatePayment } from '../services/paymentService'
-
 
 // Component and pages
 import NavBar from '../components/NavBar';
@@ -23,6 +21,9 @@ import AddPayment from './AddPayment/AddPayment';
 // styles:
 import {ThemeProvider} from '@mui/material/styles';
 import { theme } from '../styles/theme';
+
+//types:
+import {IProfile} from '../types/models'
 
 interface infoProps {
   user: any,
@@ -112,7 +113,7 @@ function App() {
             <Route path='/login' element={<Login history={history} handleSignupOrLogin={handleSignupOrLogin} />} />
             <Route path='/stripeauth' element={<Auth user={info.user} userProfile={info.userProfile} handleVerifyAccount={handleVerifyAccount} verificationLink={info.verificationLink} />} />
             <Route path='/users' element={info.user ? <Users userProfile={info.userProfile} handleAddFriend={handleAddFriend} handleRemoveFriend={handleRemoveFriend} /> : <Navigate to='/login' />} />
-            <Route path='/addpayment' element={<AddPayment handleCreatePayment={handleCreatePayment} />}  />
+            <Route path='/addpayment' element={<AddPayment handleCreatePayment={handleCreatePayment} userProfile={info.userProfile}/>}  />
           </Routes>
         </SideNavBar>
         <SpeedAdd />
