@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { Button, OutlinedInput, FormControl, InputLabel, Input, InputAdornment } from '@mui/material';
-import { stripePromise } from '../../styles/stripeElement'
-import { Elements, CardElement } from '@stripe/react-stripe-js';
+import { CardElement } from '@stripe/react-stripe-js';
 
 interface IProps {
     handleCreatePayment: (PaymentData: any) => void,
@@ -45,9 +44,7 @@ const AddPayment: React.FC<IProps> = (props) => {
 
   return (
       <>
-        <CardElement />
-
-        <button>Submit</button>
+        {/* <CardElement /> */}
     <Button component={Link} to="/" color={'primary'} variant="text" >Cancel</Button>
     <form
       autoComplete="off"

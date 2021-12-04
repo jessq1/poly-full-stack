@@ -17,13 +17,12 @@ import Signup from './Signup/Signup';
 import Login from './Login/Login';
 import Landing from './Landing/Landing'
 import Auth from './Auth/Auth';
+import Users from './Users/Users';
 import AddPayment from './AddPayment/AddPayment';
 
 // styles:
 import {ThemeProvider} from '@mui/material/styles';
 import { theme } from '../styles/theme';
-import { result } from 'lodash';
-import { Url } from 'url';
 
 interface infoProps {
   user: any,
@@ -96,6 +95,7 @@ function App() {
             <Route path='/signup' element={<Signup history={history} handleSignupOrLogin={handleSignupOrLogin} userProfile={info.userProfile} />} />
             <Route path='/login' element={<Login history={history} handleSignupOrLogin={handleSignupOrLogin} />} />
             <Route path='/stripeauth' element={<Auth user={info.user} userProfile={info.userProfile} handleVerifyAccount={handleVerifyAccount} verificationLink={info.verificationLink} />} />
+            <Route path='/users' element={info.user ? <Users /> : <Navigate to='/login' />} />
             <Route path='/addpayment' element={<AddPayment handleCreatePayment={handleCreatePayment} />}  />
           </Routes>
         </SideNavBar>

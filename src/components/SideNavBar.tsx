@@ -55,6 +55,12 @@ export default function SideNavBar(props: NavProps) {
         </DrawerHeader>
         <Divider />
         <List>
+            <ListItem button key='Users'component={Link} to='/users' >
+                <ListItemIcon>
+                    <PeopleIcon fontSize='large' />
+                </ListItemIcon>
+                <ListItemText primary='Users' />
+            </ListItem>
             <ListItem button key='Payments'component={Link} to='/payments' >
                 <ListItemIcon>
                     <PeopleIcon fontSize='large' />
