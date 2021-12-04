@@ -17,17 +17,6 @@ export function getUserProfile() {
 export async function directToStripeAuth(userProfile: any) {
   const stripeCustomerId: string = userProfile?.stripeCustomerId
   const stripeSecretKey = process.env.REACT_APP_STRIPE_SECRET_KEY
-  // console.log(stripeSecretKey)
-
-  // const accountLink = await stripe.accountLinks.create({
-  //   account: stripeCustomerId,
-  //   refresh_url: siteUrl + '/login',
-  //   return_url: siteUrl + '/',
-  //   type: 'account_onboarding',
-  // })
-
-  // console.log(stripeCustomerId)
-  // console.log(accountLink.url)
 
   const params = new URLSearchParams()
   params.append('account', stripeCustomerId)
@@ -35,7 +24,7 @@ export async function directToStripeAuth(userProfile: any) {
   params.append('return_url', siteUrl)
   params.append('type', 'account_onboarding')
   
-  axios.post(
+  const response = await axios.post(
     'https://api.stripe.com/v1/account_links', 
     params
   , {
@@ -44,12 +33,6 @@ export async function directToStripeAuth(userProfile: any) {
       'Content-Type' : 'application/x-www-form-urlencoded'
     }
   })
-  .then(function (response:any) {
-    console.log(response.data.url);
-  })
-  .catch(function (error:any) {
-    console.log(error);
-  });
-
-  // return accountLink.url
+  
+  return response.data?.url
 }

@@ -3,25 +3,29 @@ import * as profileService from '../../services/profileService'
 
 interface IProps {
   user: any,
-  userProfile: any
+  userProfile: any,
+  handleVerifyAccount: (userProfile: any) => Promise<void>
+  verificationLink: any,
 }
 
-const Auth: React.FC<IProps> = ({user, userProfile}) => {
+const Auth: React.FC<IProps> = ({user, userProfile, handleVerifyAccount, verificationLink}) => {
     useEffect(()=> {
-        async function fetchUrl(userProfile: any){
-            const url = await profileService.directToStripeAuth(userProfile)
-            console.log(url)
-        }
-        fetchUrl(userProfile)
+        // async function fetchUrl(userProfile: any){
+        //     const url = await profileService.directToStripeAuth(userProfile)
+        //     console.log('auth check')
+        //     console.log(url)
+        // }
+        // fetchUrl(userProfile)
+        handleVerifyAccount(userProfile)
       }, [userProfile])
-
+      
       return (
         <>
           
           <main >
-            <h1>
-              stripe auth
-            </h1>
+            <a href={verificationLink}>
+              Verify
+            </a>
           </main>
   
         </>

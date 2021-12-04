@@ -23,10 +23,12 @@ import AddPayment from './AddPayment/AddPayment';
 import {ThemeProvider} from '@mui/material/styles';
 import { theme } from '../styles/theme';
 import { result } from 'lodash';
+import { Url } from 'url';
 
 interface infoProps {
   user: any,
 	userProfile: any,
+  verificationLink: any, 
 }
 
 function App() {
@@ -35,6 +37,7 @@ function App() {
   const [info, setInfo] = useState<infoProps>({
     user: authService.getUser(),
 		userProfile: null,
+    verificationLink: null
   })
   const [open, setOpen] = React.useState(false);
   const [payments, setPayments] = useState<any>([])
@@ -62,13 +65,21 @@ function App() {
 
   const handleLogout = () => {
     authService.logout()
-    setInfo({user:null, userProfile: null,})
+    setInfo({user:null, userProfile: null,verificationLink: null,})
     navigate('/')
   }
 
   const handleSignupOrLogin = async () => {
-		setInfo({ user: authService.getUser(), userProfile: await profileService.getUserProfile() })
+		setInfo({ user: authService.getUser(), userProfile: await profileService.getUserProfile(), verificationLink: null })
 	}
+
+  const handleVerifyAccount = async (userProfile: any) => {
+		const verificationLink = await profileService.directToStripeAuth(userProfile)
+		setInfo({
+      ...info,
+      verificationLink: verificationLink,
+  })
+	  }
 
   const handleCreatePayment = (PaymentData: any) => {
 		createPayment(PaymentData)
@@ -84,7 +95,7 @@ function App() {
             <Route path='/' element={<Landing user={info.user} />} />
             <Route path='/signup' element={<Signup history={history} handleSignupOrLogin={handleSignupOrLogin} userProfile={info.userProfile} />} />
             <Route path='/login' element={<Login history={history} handleSignupOrLogin={handleSignupOrLogin} />} />
-            <Route path='/stripeauth' element={<Auth user={info.user} userProfile={info.userProfile} />} />
+            <Route path='/stripeauth' element={<Auth user={info.user} userProfile={info.userProfile} handleVerifyAccount={handleVerifyAccount} verificationLink={info.verificationLink} />} />
             <Route path='/addpayment' element={<AddPayment handleCreatePayment={handleCreatePayment} />}  />
           </Routes>
         </SideNavBar>
