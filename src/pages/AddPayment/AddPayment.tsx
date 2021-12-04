@@ -13,7 +13,8 @@ interface IProps {
 interface State {
     amount: string;
     person: string;
-    method: string;
+    note: string;
+    methodIsPay: boolean;
   }
 
 const AddPayment: React.FC<IProps> = ({ handleCreatePayment, userProfile }) => {
@@ -21,7 +22,8 @@ const AddPayment: React.FC<IProps> = ({ handleCreatePayment, userProfile }) => {
   const [formData, setFormData] = useState({
     amount: '',
     person: '',
-    method: 'pay'
+    note: '',
+    methodIsPay: true
   })
 
   const handleChange =
@@ -41,7 +43,7 @@ const AddPayment: React.FC<IProps> = ({ handleCreatePayment, userProfile }) => {
       console.log(err)
     }
   }
-  const { amount, person, method } = formData
+  const { amount, person, note, methodIsPay } = formData
 
   const isFormInvalid = () => {
     return !(parseInt(amount) && person)
@@ -66,11 +68,6 @@ const AddPayment: React.FC<IProps> = ({ handleCreatePayment, userProfile }) => {
         </FormControl>
       <FormControl fullWidth sx={{ m: 1 }} variant="standard">
         <InputLabel htmlFor="name">Name</InputLabel>
-          {/* <Input
-            id="name"
-            value={person}
-            onChange={handleChange('person')}
-          /> */}
           <Select
             labelId="label"
             id="standard"
@@ -84,15 +81,23 @@ const AddPayment: React.FC<IProps> = ({ handleCreatePayment, userProfile }) => {
           )}
         </Select>
         </FormControl>
+        <FormControl fullWidth sx={{ m: 1 }} variant="standard">
+        <InputLabel htmlFor="name">Note</InputLabel>
+          <Input
+            id="name"
+            value={note}
+            onChange={handleChange('note')}
+          />
+        </FormControl>
       <Button color={'primary'} variant="outlined" 
         type='submit' name='pay' 
-        onClick={() => (setFormData({ ...formData, method: 'pay' }))} 
+        onClick={() => (setFormData({ ...formData, methodIsPay: true }))} 
         disabled={isFormInvalid()}>
             Pay
         </Button>
       <Button color={'primary'} variant="outlined" 
         type='submit' name='request' 
-        onClick={() => (setFormData({ ...formData, method: 'request' }))} 
+        onClick={() => (setFormData({ ...formData, methodIsPay: false }))} 
         disabled={isFormInvalid()} >
             Request
         </Button>
