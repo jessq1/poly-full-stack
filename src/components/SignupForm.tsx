@@ -10,13 +10,15 @@ interface IProps {
     handleSignupOrLogin: () => Promise<void>,
     message: string,
     setMessage: React.Dispatch<React.SetStateAction<string>>
+    userProfile: any,
 }
 
 const SignupForm: React.FC<IProps> = (props) => {
 
     const navigate = useNavigate()
     const [input, setInput] = useState({
-            name: '',
+            firstName: '',
+            lastName: '',
             email: '',
             password: '',
             passwordConf: '',
@@ -36,19 +38,19 @@ const SignupForm: React.FC<IProps> = (props) => {
     try {
       await authService.signup(input)
       handleSignupOrLogin()
-      navigate('/')
+      navigate('/stripeauth')
     } catch (err: any) {
         setMessage(err.message)
     }
   }
 
   const isFormInvalid = () => {
-    const { name, email, password, passwordConf } = input
-    return !(name && email && password === passwordConf && password !== '')
+    const { firstName, lastName, email, password, passwordConf } = input
+    return !(firstName && lastName && email && password === passwordConf && password !== '')
   }
 
 
-    const { name, email, password, passwordConf } = input
+    const { firstName, lastName, email, password, passwordConf } = input
     return (
       <form
         autoComplete="off"
@@ -58,11 +60,23 @@ const SignupForm: React.FC<IProps> = (props) => {
            <TextField
              type="text"
              autoComplete="off"
-             id="name"
-             value={name}
-             name="name"
+             id="firstName"
+             value={firstName}
+             name="firstName"
              onChange={handleChange}
-             label="Name"
+             label="First Name"
+             variant="outlined"
+           />
+         </div>
+         <div >
+           <TextField
+             type="text"
+             autoComplete="off"
+             id="lastName"
+             value={lastName}
+             name="lastName"
+             onChange={handleChange}
+             label="Last Name"
              variant="outlined"
            />
          </div>

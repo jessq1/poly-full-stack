@@ -7,9 +7,10 @@ import { MemoryHistory } from 'history'
 interface IProps {
   history: MemoryHistory,
   handleSignupOrLogin: () => Promise<void>,
+  userProfile: any,
 }
 
-const Signup: React.FC<IProps> = ({history, handleSignupOrLogin}) => {
+const Signup: React.FC<IProps> = ({history, handleSignupOrLogin, userProfile}) => {
 
   const [message, setMessage] = useState('')
 
@@ -27,7 +28,8 @@ const Signup: React.FC<IProps> = ({history, handleSignupOrLogin}) => {
           history={history} 
           handleSignupOrLogin={handleSignupOrLogin}
           message={message} 
-          setMessage={setMessage} />
+          setMessage={setMessage}
+          userProfile={userProfile} />
         </Box>
         <div className='player-wrapper'>
         <Typography variant={'subtitle1'} color={'black'}>Already have an account? Login</Typography>

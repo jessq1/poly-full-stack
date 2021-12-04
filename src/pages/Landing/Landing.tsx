@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 interface IProps {
   user: any,
@@ -11,7 +11,7 @@ const Landing: React.FC<IProps> = ({user}) => {
           
           <main >
             <h1>
-              hello, {user ? user.name : "friend"}
+              hello, {user ? user.firstName : "friend"}
             </h1>
           </main>
   
