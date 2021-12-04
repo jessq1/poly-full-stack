@@ -10,7 +10,7 @@ const Auth: React.FC<IProps> = ({user, userProfile}) => {
     useEffect(()=> {
         async function fetchUrl(userProfile: any){
             const url = await profileService.directToStripeAuth(userProfile)
-            console.log('url')
+            console.log(url)
         }
         fetchUrl(userProfile)
       }, [userProfile])

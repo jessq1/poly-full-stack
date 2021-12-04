@@ -16,8 +16,8 @@ export function getUserProfile() {
 
 export async function directToStripeAuth(userProfile: any) {
   const stripeCustomerId = userProfile?.stripeCustomerId
-  console.log(stripeCustomerId)
-  console.log(siteUrl)
+  const stripeSecretKey = process.env.REACT_APP_STRIPE_SECRET_KEY
+  console.log(stripeSecretKey)
 
   const accountLink = await stripe.accountLinks.create({
     account: stripeCustomerId,
@@ -27,9 +27,8 @@ export async function directToStripeAuth(userProfile: any) {
   })
 
   console.log(stripeCustomerId)
-  console.log(siteUrl)
+  console.log(accountLink.url)
 
 
-  console.log(accountLink)
-  return accountLink.url
+  // return accountLink.url
 }
