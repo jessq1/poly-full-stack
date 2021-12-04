@@ -21,14 +21,13 @@ const Users: React.FC<IProps> = ({userProfile, handleAddFriend, handleRemoveFrie
 
   return (
     <>
-    <Box ml={35} mr={5} my={3}>
+    <Box ml={5} mr={5} my={3}>
       <Typography variant={'h4'}>All Users</Typography>
       <Box my={3}>
         <Grid container spacing={3}>
       {profiles.length ? 
       <>
         {profiles.map(profile=>
-        // <Grid item xs={12} s={6} md={4} lg={3} mx={'auto'} >
         <UserCard 
             profile={profile}
             key={profile._id}
@@ -36,8 +35,7 @@ const Users: React.FC<IProps> = ({userProfile, handleAddFriend, handleRemoveFrie
             handleAddFriend={handleAddFriend}
             handleRemoveFriend={handleRemoveFriend}
         />
-        //   <p key={user._id}>{user.firstName} {user.lastName}</p>
-        //   </Grid>
+
         )}
       </>
       :

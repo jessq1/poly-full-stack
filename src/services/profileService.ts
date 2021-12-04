@@ -46,7 +46,7 @@ export async function directToStripeAuth(userProfile: any) {
 
 export function friend(id: string) {
   return fetch(
-    `${BASE_URL}/friend/${id}`,
+    `${BASE_URL}friend/${id}`,
     {
       method: 'PATCH',
       headers: { Authorization: "Bearer " + tokenService.getToken() }
@@ -56,7 +56,7 @@ export function friend(id: string) {
 
 export function unfriend(id: string) {
   return fetch(
-    `${BASE_URL}/unfriend/${id}`,
+    `${BASE_URL}unfriend/${id}`,
     {
       method: 'PATCH',
       headers: { Authorization: "Bearer " + tokenService.getToken() }

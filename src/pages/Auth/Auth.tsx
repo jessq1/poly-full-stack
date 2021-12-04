@@ -16,7 +16,7 @@ const Auth: React.FC<IProps> = ({user, userProfile, handleVerifyAccount, verific
         <>
           
           <main >
-            {(userProfile.stripeOnboard)?
+            {(userProfile?.stripeOnboard)?
               <a href='/addpayment'>
                 Add a payment
               </a> : 
