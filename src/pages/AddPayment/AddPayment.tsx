@@ -28,7 +28,7 @@ const AddPayment: React.FC<IProps> = ({ handleCreatePayment, userProfile }) => {
     (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [prop]: event.target.value });
     };
-  const handlePersonChange = (event: any) => {
+  const handlePersonChange = (event: SelectChangeEvent) => {
     setFormData({...formData, person: event.target.value as string});
     };
 
@@ -75,7 +75,7 @@ const AddPayment: React.FC<IProps> = ({ handleCreatePayment, userProfile }) => {
             labelId="label"
             id="standard"
             value={person}
-            // onChange={handlePersonChange()}
+            onChange={handlePersonChange}
             label="Name"
         >
           {userProfile?.friends.map((friend: any) => {
