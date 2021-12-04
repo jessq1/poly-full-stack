@@ -10,12 +10,6 @@ interface IProps {
 
 const Auth: React.FC<IProps> = ({user, userProfile, handleVerifyAccount, verificationLink}) => {
     useEffect(()=> {
-        // async function fetchUrl(userProfile: any){
-        //     const url = await profileService.directToStripeAuth(userProfile)
-        //     console.log('auth check')
-        //     console.log(url)
-        // }
-        // fetchUrl(userProfile)
         handleVerifyAccount(userProfile)
       }, [userProfile])
       
@@ -24,7 +18,7 @@ const Auth: React.FC<IProps> = ({user, userProfile, handleVerifyAccount, verific
           
           <main >
             <a href={verificationLink}>
-              Verify
+              Verify with Stripe
             </a>
           </main>
   
