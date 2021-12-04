@@ -5,6 +5,13 @@ const axios = require('axios');
 const BASE_URL = "/api/profiles/"
 const siteUrl = process.env.REACT_APP_SITE_URL
 
+export function getAllProfiles() {
+  return fetch(BASE_URL, {
+    headers: {Authorization: `Bearer ${tokenService.getToken()}`}
+  })
+  .then(res => res.json())
+}
+
 export function getUserProfile() {
   return fetch(`${BASE_URL}userProfile`, 
   {
@@ -35,4 +42,24 @@ export async function directToStripeAuth(userProfile: any) {
   })
   
   return response.data?.url
+}
+
+export function friend(id: string) {
+  return fetch(
+    `${BASE_URL}/friend/${id}`,
+    {
+      method: 'PATCH',
+      headers: { Authorization: "Bearer " + tokenService.getToken() }
+    },
+    ).then((res) => res.json())
+}
+
+export function unfriend(id: string) {
+  return fetch(
+    `${BASE_URL}/unfriend/${id}`,
+    {
+      method: 'PATCH',
+      headers: { Authorization: "Bearer " + tokenService.getToken() }
+    },
+    ).then((res) => res.json())
 }

@@ -78,7 +78,23 @@ function App() {
       ...info,
       verificationLink: verificationLink,
   })
-	  }
+	}
+
+  const handleAddFriend = async (friendId: string) => {
+		const updatedProfile = await profileService.friend(friendId)
+    setInfo({
+      ...info,
+      userProfile: updatedProfile,
+  })
+	}
+
+	const handleRemoveFriend = async (friendId: string) => {
+		const updatedProfile = await profileService.unfriend(friendId)
+		setInfo({
+      ...info,
+      userProfile: updatedProfile,
+  })
+	}
 
   const handleCreatePayment = (PaymentData: any) => {
 		createPayment(PaymentData)
@@ -95,7 +111,7 @@ function App() {
             <Route path='/signup' element={<Signup history={history} handleSignupOrLogin={handleSignupOrLogin} userProfile={info.userProfile} />} />
             <Route path='/login' element={<Login history={history} handleSignupOrLogin={handleSignupOrLogin} />} />
             <Route path='/stripeauth' element={<Auth user={info.user} userProfile={info.userProfile} handleVerifyAccount={handleVerifyAccount} verificationLink={info.verificationLink} />} />
-            <Route path='/users' element={info.user ? <Users /> : <Navigate to='/login' />} />
+            <Route path='/users' element={info.user ? <Users userProfile={info.userProfile} handleAddFriend={handleAddFriend} handleRemoveFriend={handleRemoveFriend} /> : <Navigate to='/login' />} />
             <Route path='/addpayment' element={<AddPayment handleCreatePayment={handleCreatePayment} />}  />
           </Routes>
         </SideNavBar>
