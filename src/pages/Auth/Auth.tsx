@@ -17,9 +17,14 @@ const Auth: React.FC<IProps> = ({user, userProfile, handleVerifyAccount, verific
         <>
           
           <main >
-            <a href={verificationLink}>
-              Verify with Stripe
-            </a>
+            {(userProfile.stripeOnboard)?
+              <a href='/addpayment'>
+                Add a payment
+              </a> : 
+              <a href={verificationLink}>
+                Verify with Stripe
+              </a>
+            }
           </main>
   
         </>
