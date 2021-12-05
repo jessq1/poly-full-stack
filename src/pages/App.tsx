@@ -17,6 +17,7 @@ import Landing from './Landing/Landing'
 import Auth from './Auth/Auth';
 import Users from './Users/Users';
 import AddPayment from './AddPayment/AddPayment';
+import Notification from './Notification/Notification';
 
 // styles:
 import {ThemeProvider} from '@mui/material/styles';
@@ -114,6 +115,8 @@ function App() {
             <Route path='/stripeauth' element={<Auth user={info.user} userProfile={info.userProfile} handleVerifyAccount={handleVerifyAccount} verificationLink={info.verificationLink} />} />
             <Route path='/users' element={info.user ? <Users userProfile={info.userProfile} handleAddFriend={handleAddFriend} handleRemoveFriend={handleRemoveFriend} /> : <Navigate to='/login' />} />
             <Route path='/addpayment' element={<AddPayment handleCreatePayment={handleCreatePayment} userProfile={info.userProfile}/>}  />
+            <Route path='/notifications' element={<Notification userProfile={info.userProfile}/>}  />
+
           </Routes>
         </SideNavBar>
         <SpeedAdd />

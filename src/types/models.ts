@@ -17,3 +17,17 @@ export interface IProfile{
     payment: any[],
     events:any[],
 }
+
+export interface IPayment{
+  _id: string,
+  amount: number,
+  initiator: any,
+  paymentFrom: any,
+  paymentTo: any,
+  methodIsPay: boolean,
+  note: string,
+  completed: boolean,
+  likes: number,
+  stripePaymentIntentId: string,
+  created: Date,
+}
