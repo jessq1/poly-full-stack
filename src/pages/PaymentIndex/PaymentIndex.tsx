@@ -24,11 +24,13 @@ const PaymentIndex: React.FC<IProps> = ({ userProfile }) => {
       <Box ml={5} mr={5} my={3}>
       <Typography variant={'h4'}>All Payments:</Typography>
       <Box ml={5} mr={5} my={3}>
+      <Grid container spacing={2}>
       {allPayments.map((payment) => (
         <PaymentCard payment={payment}/>
         //  <Typography variant={'subtitle1'} key={payment._id}>{payment._id}</Typography>
       )
           )}
+        </Grid>
       </Box>
     
       </Box>
