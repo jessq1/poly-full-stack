@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { getPayments, getIncompeltePayments, getPendingPayments } from '../../services/paymentService'
+import { deletePayment, getIncompeltePayments, getPendingPayments } from '../../services/paymentService'
+import IncompeletePayments from '../../components/IncompeletePayments'
+import PendingPayments from '../../components/PendingPayments'
 
 import {IPayment} from '../../types/models'
 
@@ -11,15 +13,15 @@ interface IProps {
 }
 
 const Notification: React.FC<IProps> = ({ userProfile }) => {
-    const [allPayments, setAllPayments] = useState<IPayment[]>([])
     const [incompeletePayments, setIncompeletePayments] = useState<IPayment[]>([])
     const [pendingPayments, setPendingPayments] = useState<IPayment[]>([])
 
-
-    useEffect(()=> {
-		getPayments()
-		.then(allPayments => setAllPayments(allPayments))
-	}, [])
+    const handleDeletePayment = (id:string) => {
+		deletePayment(id)
+		.then(deletedPayment => {
+			setPendingPayments(pendingPayments.filter((payment: any) => payment._id !== deletedPayment._id))
+		})
+	}
 
     useEffect(()=> {
 		getIncompeltePayments()
@@ -35,22 +37,20 @@ const Notification: React.FC<IProps> = ({ userProfile }) => {
       <>
       <Box ml={5} mr={5} my={3}>
       <Typography variant={'h4'}>Incompelte Requests:</Typography>
-      {incompeletePayments.map((payment) => {
-        return     (payment.methodIsPay) ? 
-            <Typography variant={'subtitle1'} key={payment._id}> {payment.initiator.firstName} {payment.initiator.lastName} wants to pay you $ {payment.amount} </Typography> : <Typography variant={'subtitle1'} key={payment._id}> {payment.initiator.firstName} {payment.initiator.lastName} wants to request $ {payment.amount} from you </Typography>
-          }
+      <Box ml={5} mr={5} my={3}>
+      {incompeletePayments.map((payment) => (
+        <IncompeletePayments payment={payment}/>
+      )
           )}
+      </Box>
     <Typography variant={'h4'}>Pending Requests:</Typography>
-      {pendingPayments.map((payment) => {
-        return     (payment.methodIsPay) ? 
-            <Typography variant={'subtitle1'} key={payment._id}> Your request to pay {payment.person.firstName} {payment.person.lastName}  $ {payment.amount} is still pending</Typography> : <Typography variant={'subtitle1'} key={payment._id}> Your request to {payment.person.firstName} {payment.person.lastName} is still pending </Typography>
-          }
+    <Box ml={5} mr={5} my={3}>
+      {pendingPayments.map((payment) => (
+        <PendingPayments payment={payment} handleDeletePayment={handleDeletePayment} />
+      )
           )}
-    <Typography variant={'h4'}>Previouse payments:</Typography>
-        {allPayments.map((payment) => {
-            return <Typography variant={'h4'} key={payment._id}>{payment._id}</Typography>
-          }
-          )}
+    </Box>
+    
       </Box>
     </>
   );
