@@ -5,8 +5,8 @@ Poly is a Peer to peer payment application that allows users to transfer money b
 
 ## Project Repo
 You can access full code for this application via these folders:
-front-end: https://github.com/jessq1/poly
-back-end: https://github.com/jessq1/poly-server
+- front-end: https://github.com/jessq1/poly
+- back-end: https://github.com/jessq1/poly-server
 
 ## Architecture Pattern
 The Application utilizes MVC(Model View Controller) architecture pattern. There are three main models: User, Profile, Payment. Corresponding routes and controllers are established 
@@ -24,6 +24,10 @@ The Application utilizes MVC(Model View Controller) architecture pattern. There 
 <img width="971" alt="ERD" src="https://user-images.githubusercontent.com/85958041/144761574-b5e29483-c8de-475b-877f-ee3e06f584d5.png">
 
 2. Wireframe
+![Poly-d](https://user-images.githubusercontent.com/85958041/144762113-e1915417-e57e-4be8-a376-d67e523fdee4.png)
+![Poly-m](https://user-images.githubusercontent.com/85958041/144762117-431caba8-8f68-482f-9cef-26d1e0aa9e0d.png)
+
+
 
 ## Project Walkthrough
 1. After signing up with your emial address, you will be prompted to a link to verify with Stripe. 
