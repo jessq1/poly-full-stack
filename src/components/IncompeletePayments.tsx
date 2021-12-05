@@ -16,7 +16,9 @@ const IncompeletePayments: React.FC<IProps> = ({ payment }) => {
     <>
     {(payment.methodIsPay) ? 
             <Typography variant={'subtitle1'} key={payment._id}> {payment.initiator.firstName} {payment.initiator.lastName} wants to pay you $ {payment.amount} </Typography> : <Typography variant={'subtitle1'} key={payment._id}> {payment.initiator.firstName} {payment.initiator.lastName} wants to request $ {payment.amount} from you </Typography>}
-                <Button>Complete</Button>
+    {(payment.methodIsPay) ? 
+        <Button>OK</Button> :
+        <Button component={Link} to={`/checkout/${payment._id}`} color={'primary'} variant="outlined">Complete</Button>}
     </>
   );
 }
