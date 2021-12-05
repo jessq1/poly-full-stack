@@ -1,4 +1,3 @@
-
 import React, {Component, useState, useEffect } from 'react';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import { createMemoryHistory } from 'history';
@@ -8,7 +7,6 @@ import * as authService from '../services/authService'
 import * as profileService from '../services/profileService'
 import { createPayment, getPayments, deletePayment, updatePayment } from '../services/paymentService'
 
-
 // Component and pages
 import NavBar from '../components/NavBar';
 import SideNavBar from '../components/SideNavBar';
@@ -17,13 +15,17 @@ import Signup from './Signup/Signup';
 import Login from './Login/Login';
 import Landing from './Landing/Landing'
 import Auth from './Auth/Auth';
+import Users from './Users/Users';
 import AddPayment from './AddPayment/AddPayment';
+import PaymentIndex from './PaymentIndex/PaymentIndex';
+import Notification from './Notification/Notification';
 
 // styles:
 import {ThemeProvider} from '@mui/material/styles';
 import { theme } from '../styles/theme';
-import { result } from 'lodash';
-import { Url } from 'url';
+
+//types:
+import {IProfile} from '../types/models'
 
 interface infoProps {
   user: any,
@@ -79,7 +81,23 @@ function App() {
       ...info,
       verificationLink: verificationLink,
   })
-	  }
+	}
+
+  const handleAddFriend = async (friendId: string) => {
+		const updatedProfile = await profileService.friend(friendId)
+    setInfo({
+      ...info,
+      userProfile: updatedProfile,
+  })
+	}
+
+	const handleRemoveFriend = async (friendId: string) => {
+		const updatedProfile = await profileService.unfriend(friendId)
+		setInfo({
+      ...info,
+      userProfile: updatedProfile,
+  })
+	}
 
   const handleCreatePayment = (PaymentData: any) => {
 		createPayment(PaymentData)
@@ -96,7 +114,11 @@ function App() {
             <Route path='/signup' element={<Signup history={history} handleSignupOrLogin={handleSignupOrLogin} userProfile={info.userProfile} />} />
             <Route path='/login' element={<Login history={history} handleSignupOrLogin={handleSignupOrLogin} />} />
             <Route path='/stripeauth' element={<Auth user={info.user} userProfile={info.userProfile} handleVerifyAccount={handleVerifyAccount} verificationLink={info.verificationLink} />} />
-            <Route path='/addpayment' element={<AddPayment handleCreatePayment={handleCreatePayment} />}  />
+            <Route path='/users' element={info.user ? <Users userProfile={info.userProfile} handleAddFriend={handleAddFriend} handleRemoveFriend={handleRemoveFriend} /> : <Navigate to='/login' />} />
+            <Route path='/addpayment' element={<AddPayment handleCreatePayment={handleCreatePayment} userProfile={info.userProfile}/>}  />
+            <Route path='/payments' element={<PaymentIndex userProfile={info.userProfile}/>}  />
+            <Route path='/notifications' element={<Notification userProfile={info.userProfile} />  }  />
+
           </Routes>
         </SideNavBar>
         <SpeedAdd />

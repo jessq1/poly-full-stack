@@ -5,11 +5,10 @@ import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import { BiDollar } from "react-icons/bi";
-import { MdOutlineEventAvailable } from "react-icons/md";
-
+import { FiUserPlus } from "react-icons/fi";
 
 const actions = [
-  { icon: <Link to='/events'><MdOutlineEventAvailable fontSize={23}/></Link>, name: 'Add Event' },
+  { icon: <Link to='/users'><FiUserPlus fontSize={23}/></Link>, name: 'Add Friend' },
   { icon: <Link to='/addpayment'><BiDollar fontSize={23}/></Link>, name: 'Add Payment' },
 ];
 

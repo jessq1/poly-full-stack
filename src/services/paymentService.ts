@@ -19,6 +19,20 @@ function getPayments() {
   .then(res => res.json())
 }
 
+function getIncompeltePayments() {
+  return fetch(`${BASE_URL}/incomplete`, {
+    headers: {'Authorization': `Bearer ${tokenService.getToken()}`}
+  })
+  .then(res => res.json())
+}
+
+function getPendingPayments() {
+  return fetch(`${BASE_URL}/pending`, {
+    headers: {'Authorization': `Bearer ${tokenService.getToken()}`}
+  })
+  .then(res => res.json())
+}
+
 function deletePayment(id: String) {
   return fetch(`${BASE_URL}/${id}`, {
     method: 'DELETE',
@@ -42,6 +56,8 @@ function updatePayment(paymentData: any) {
 export {
   createPayment,
   getPayments,
+  getIncompeltePayments,
+  getPendingPayments,
   deletePayment,
   updatePayment,
 }

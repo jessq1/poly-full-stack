@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react'
-import * as profileService from '../../services/profileService'
 
 interface IProps {
   user: any,
@@ -10,12 +9,6 @@ interface IProps {
 
 const Auth: React.FC<IProps> = ({user, userProfile, handleVerifyAccount, verificationLink}) => {
     useEffect(()=> {
-        // async function fetchUrl(userProfile: any){
-        //     const url = await profileService.directToStripeAuth(userProfile)
-        //     console.log('auth check')
-        //     console.log(url)
-        // }
-        // fetchUrl(userProfile)
         handleVerifyAccount(userProfile)
       }, [userProfile])
       
@@ -23,9 +16,14 @@ const Auth: React.FC<IProps> = ({user, userProfile, handleVerifyAccount, verific
         <>
           
           <main >
-            <a href={verificationLink}>
-              Verify
-            </a>
+            {(userProfile?.stripeOnboard)?
+              <a href='/addpayment'>
+                Add a payment
+              </a> : 
+              <a href={verificationLink}>
+                Verify with Stripe
+              </a>
+            }
           </main>
   
         </>

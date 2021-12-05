@@ -8,8 +8,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import PeopleIcon from '@mui/icons-material/People';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import EventIcon from '@mui/icons-material/Event';
+import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 
 import { drawerWidth, openedMixin, closedMixin, DrawerHeader } from '../styles/nav'
 
@@ -55,21 +55,22 @@ export default function SideNavBar(props: NavProps) {
         </DrawerHeader>
         <Divider />
         <List>
-            <ListItem button key='Payments'component={Link} to='/payments' >
+            <ListItem button key='Users'component={Link} to='/users' >
                 <ListItemIcon>
                     <PeopleIcon fontSize='large' />
                 </ListItemIcon>
+                <ListItemText primary='Users' />
+            </ListItem>
+            <ListItem button key='Payments'component={Link} to='/payments' >
+                <ListItemIcon>
+                    <LocalAtmIcon fontSize='large' />
+                </ListItemIcon>
                 <ListItemText primary='Payments' />
             </ListItem>
-            <ListItem button key='Events' component={Link} to='/events'>
-                <ListItemIcon>
-                    <EventIcon fontSize='large' />
-                </ListItemIcon>
-                <ListItemText primary='Events' />
-            </ListItem>
+            
             <ListItem button key='Notifications' component={Link} to='/notifications'>
                 <ListItemIcon>
-                    <InboxIcon fontSize='large' />
+                    <MarkEmailUnreadIcon fontSize='large' />
                 </ListItemIcon>
                 <ListItemText primary='Notifications' />
             </ListItem>
