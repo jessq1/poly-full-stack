@@ -19,6 +19,7 @@ import Users from './Users/Users';
 import AddPayment from './AddPayment/AddPayment';
 import PaymentIndex from './PaymentIndex/PaymentIndex';
 import Notification from './Notification/Notification';
+import Checkout from './Checkout/Checkout';
 
 // styles:
 import {ThemeProvider} from '@mui/material/styles';
@@ -117,6 +118,7 @@ function App() {
             <Route path='/users' element={info.user ? <Users userProfile={info.userProfile} handleAddFriend={handleAddFriend} handleRemoveFriend={handleRemoveFriend} /> : <Navigate to='/login' />} />
             <Route path='/addpayment' element={<AddPayment handleCreatePayment={handleCreatePayment} userProfile={info.userProfile}/>}  />
             <Route path='/payments' element={<PaymentIndex userProfile={info.userProfile}/>}  />
+            <Route path='/checkout' element={<Checkout userProfile={info.userProfile}/>}  />
             <Route path='/notifications' element={<Notification userProfile={info.userProfile} />  }  />
 
           </Routes>

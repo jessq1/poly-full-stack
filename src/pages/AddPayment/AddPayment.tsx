@@ -38,7 +38,11 @@ const AddPayment: React.FC<IProps> = ({ handleCreatePayment, userProfile }) => {
     e.preventDefault()
     try {
       handleCreatePayment(formData)
-      navigate('/')
+      if(methodIsPay) {
+        navigate('/checkout')
+      } else {
+        navigate('/')
+      }
     } catch (err) {
       console.log(err)
     }
