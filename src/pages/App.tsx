@@ -20,6 +20,7 @@ import AddPayment from './AddPayment/AddPayment';
 import PaymentIndex from './PaymentIndex/PaymentIndex';
 import Notification from './Notification/Notification';
 import Checkout from './Checkout/Checkout';
+import NotFound from './NotFound/NotFound';
 
 // styles:
 import {ThemeProvider} from '@mui/material/styles';
@@ -110,6 +111,7 @@ function App() {
         <NavBar title = 'poly' user={info.user} handleLogout={handleLogout} open={open} handleDrawerOpen={handleDrawerOpen} />
         <SideNavBar  user={info.user} open={open} handleDrawerClose={handleDrawerClose} >
           <Routes>
+            <Route path='*' element={<NotFound />} />
 
             <Route path='/' element={<Landing user={info.user} />} />
             <Route path='/signup' element={<Signup history={history} handleSignupOrLogin={handleSignupOrLogin} userProfile={info.userProfile} />} />

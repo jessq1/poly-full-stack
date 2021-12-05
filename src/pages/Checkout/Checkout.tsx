@@ -17,18 +17,6 @@ const Checkout: React.FC<IProps> = ({ userProfile }) => {
   const elements = useElements();
   const { id } = useParams()
 
-  const [payment, setPayment] = useState<IPayment>()
-
-//   useEffect(()=>{
-//       async function fetchPayment(id: string){
-//           if (!payment) {
-//               const paymentInfo = await getPaymentInfo(id!)
-//               setPayment(paymentInfo)
-//           }
-//       }
-//       fetchPayment(id!)
-//   },[id])
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!stripe || !elements) {
