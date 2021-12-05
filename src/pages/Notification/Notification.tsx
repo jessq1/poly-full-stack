@@ -43,7 +43,7 @@ const Notification: React.FC<IProps> = ({ userProfile }) => {
     <Typography variant={'h4'}>Pending Requests:</Typography>
       {pendingPayments.map((payment) => {
         return     (payment.methodIsPay) ? 
-            <Typography variant={'subtitle1'} key={payment._id}> {payment.initiator.firstName} {payment.initiator.lastName} wants to pay you $ {payment.amount} </Typography> : <Typography variant={'subtitle1'} key={payment._id}> {payment.initiator.firstName} {payment.initiator.lastName} wants to request $ {payment.amount} from you </Typography>
+            <Typography variant={'subtitle1'} key={payment._id}> Your request to pay {payment.person.firstName} {payment.person.lastName}  $ {payment.amount} is still pending</Typography> : <Typography variant={'subtitle1'} key={payment._id}> Your request to {payment.person.firstName} {payment.person.lastName} is still pending </Typography>
           }
           )}
     <Typography variant={'h4'}>Previouse payments:</Typography>

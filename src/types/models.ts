@@ -22,6 +22,7 @@ export interface IPayment{
   _id: string,
   amount: number,
   initiator: any,
+  person:any,
   paymentFrom: any,
   paymentTo: any,
   methodIsPay: boolean,
