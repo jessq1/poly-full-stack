@@ -33,6 +33,13 @@ function getPendingPayments() {
   .then(res => res.json())
 }
 
+function getPaymentInfo(id: String) {
+  return fetch(`${BASE_URL}/${id}`, {
+    headers: {'Authorization': `Bearer ${tokenService.getToken()}`}
+  })
+  .then(res => res.json())
+}
+
 function deletePayment(id: String) {
   return fetch(`${BASE_URL}/${id}`, {
     method: 'DELETE',
@@ -41,8 +48,8 @@ function deletePayment(id: String) {
   .then(res => res.json())
 }
 
-function updatePayment(paymentData: any) {
-  return fetch(`${BASE_URL}/${paymentData.id}`, {
+function updatePaymentStatus(paymentData: any) {
+  return fetch(`${BASE_URL}/${paymentData._id}`, {
     method: 'PATCH',
     headers: {
       'Authorization': `Bearer ${tokenService.getToken()}`, 'Content-Type': 'application/json'
@@ -58,6 +65,7 @@ export {
   getPayments,
   getIncompeltePayments,
   getPendingPayments,
+  getPaymentInfo,
   deletePayment,
-  updatePayment,
+  updatePaymentStatus,
 }

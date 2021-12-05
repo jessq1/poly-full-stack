@@ -1,43 +1,43 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { getPaymentInfo, updatePaymentStatus } from '../../services/paymentService'
 
 import { Button } from '@mui/material';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-const CARD_ELEMENT_OPTIONS = {
-    style: {
-      base: {
-        color: "#32325d",
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        fontSmoothing: "antialiased",
-        fontSize: "16px",
-        "::placeholder": {
-          color: "#aab7c4",
-        },
-      },
-      invalid: {
-        color: "#fa755a",
-        iconColor: "#fa755a",
-      },
-    },
-  };
+import {IPayment} from '../../types/models'
 
 interface IProps {
-    payment: any,
+    userProfile: any,
 }
 
-const Checkout: React.FC<IProps> = ({ payment }) => {
+const Checkout: React.FC<IProps> = ({ userProfile }) => {
   const navigate = useNavigate()
   const stripe = useStripe();
   const elements = useElements();
+  const { id } = useParams()
 
+  const [payment, setPayment] = useState<IPayment>()
+
+//   useEffect(()=>{
+//       async function fetchPayment(id: string){
+//           if (!payment) {
+//               const paymentInfo = await getPaymentInfo(id!)
+//               setPayment(paymentInfo)
+//           }
+//       }
+//       fetchPayment(id!)
+//   },[id])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!stripe || !elements) {
         return;
       }
-    const result = await stripe.confirmCardPayment(payment.stripePaymentIntentId, {
+    const paymentInfo = await getPaymentInfo(id!)
+    console.log(paymentInfo)
+
+    const result = await stripe.confirmCardPayment(paymentInfo.stripePaymentIntentId!, {
         payment_method: {
           card: elements.getElement(CardElement)!,
           billing_details: {
@@ -49,12 +49,11 @@ const Checkout: React.FC<IProps> = ({ payment }) => {
         console.log(result.error.message);
       } else {
         if (result.paymentIntent.status === 'succeeded') {
-          // Show a success message to your customer
-          // There's a risk of the customer closing the window before callback
-          // execution. Set up a webhook or plugin to listen for the
-          // payment_intent.succeeded event that handles any business critical
-          // post-payment actions.
+          paymentInfo.completed = true
+          updatePaymentStatus(paymentInfo)
+          navigate('/notifications')
         }
+
       }
   }
 
@@ -66,8 +65,8 @@ const Checkout: React.FC<IProps> = ({ payment }) => {
       autoComplete="off"
       onSubmit={handleSubmit}
     > 
-        <CardElement options={CARD_ELEMENT_OPTIONS}/>
-        <Button disabled={!stripe}>Confirm</Button>
+        <CardElement/>
+        <Button disabled={!stripe} type='submit' >Confirm</Button>
     </form>
     </>
   );

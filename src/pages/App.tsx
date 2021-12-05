@@ -1,11 +1,11 @@
-import React, {Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import { createMemoryHistory } from 'history';
 
 // connection to backend
 import * as authService from '../services/authService'
 import * as profileService from '../services/profileService'
-import { createPayment, getPayments, deletePayment, updatePayment } from '../services/paymentService'
+import { createPayment } from '../services/paymentService'
 
 // Component and pages
 import NavBar from '../components/NavBar';
@@ -116,9 +116,9 @@ function App() {
             <Route path='/login' element={<Login history={history} handleSignupOrLogin={handleSignupOrLogin} />} />
             <Route path='/stripeauth' element={<Auth user={info.user} userProfile={info.userProfile} handleVerifyAccount={handleVerifyAccount} verificationLink={info.verificationLink} />} />
             <Route path='/users' element={info.user ? <Users userProfile={info.userProfile} handleAddFriend={handleAddFriend} handleRemoveFriend={handleRemoveFriend} /> : <Navigate to='/login' />} />
-            <Route path='/addpayment' element={<AddPayment handleCreatePayment={handleCreatePayment} userProfile={info.userProfile}/>}  />
+            <Route path='/addpayment' element={<AddPayment userProfile={info.userProfile}/>}  />
             <Route path='/payments' element={<PaymentIndex userProfile={info.userProfile}/>}  />
-            <Route path='/checkout' element={<Checkout userProfile={info.userProfile}/>}  />
+            <Route path='/checkout/:id' element={<Checkout userProfile={info.userProfile}/>}  />
             <Route path='/notifications' element={<Notification userProfile={info.userProfile} />  }  />
 
           </Routes>
