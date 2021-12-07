@@ -116,12 +116,12 @@ function App() {
             <Route path='/' element={<Landing user={info.user} />} />
             <Route path='/signup' element={<Signup history={history} handleSignupOrLogin={handleSignupOrLogin} userProfile={info.userProfile} />} />
             <Route path='/login' element={<Login history={history} handleSignupOrLogin={handleSignupOrLogin} />} />
-            <Route path='/stripeauth' element={<Auth user={info.user} userProfile={info.userProfile} handleVerifyAccount={handleVerifyAccount} verificationLink={info.verificationLink} />} />
+            <Route path='/stripeauth' element={info.user ? <Auth user={info.user} userProfile={info.userProfile} handleVerifyAccount={handleVerifyAccount} verificationLink={info.verificationLink} />: <Navigate to='/login' /> } />
             <Route path='/users' element={info.user ? <Users userProfile={info.userProfile} handleAddFriend={handleAddFriend} handleRemoveFriend={handleRemoveFriend} /> : <Navigate to='/login' />} />
-            <Route path='/addpayment' element={<AddPayment userProfile={info.userProfile}/>}  />
-            <Route path='/payments' element={<PaymentIndex userProfile={info.userProfile}/>}  />
-            <Route path='/checkout/:id' element={<Checkout userProfile={info.userProfile}/>}  />
-            <Route path='/notifications' element={<Notification userProfile={info.userProfile} />  }  />
+            <Route path='/addpayment' element={info.user ? <AddPayment userProfile={info.userProfile}/>: <Navigate to='/login' /> }  />
+            <Route path='/payments' element={info.user ? <PaymentIndex userProfile={info.userProfile}/>: <Navigate to='/login' /> }  />
+            <Route path='/checkout/:id' element={info.user ? <Checkout userProfile={info.userProfile}/>: <Navigate to='/login' /> }  />
+            <Route path='/notifications' element={info.user ? <Notification userProfile={info.userProfile} /> : <Navigate to='/login' />  }  />
 
           </Routes>
         </SideNavBar>
