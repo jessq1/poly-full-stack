@@ -11,7 +11,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 
-import { drawerWidth, openedMixin, closedMixin, DrawerHeader } from '../styles/nav'
+import { drawerWidth, openedMixin, closedMixin, hideMixin, DrawerHeader } from '../styles/nav'
 import {theme} from '../styles/theme'
 import IconListItem from './IconListItem'
 import MyProfileBar from './MyProfileBar'
@@ -39,6 +39,23 @@ const DrawerLeft = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'op
     ...(!open && {
       ...closedMixin(theme),
       '& .MuiDrawer-paper': closedMixin(theme),
+    }),
+  }),
+);
+
+const DrawerRight = styled(MuiDrawer)(
+  ({ theme, open }) => ({
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+    boxSizing: 'border-box',
+    ...(!open && {
+      ...openedMixin(theme),
+      '& .MuiDrawer-paper': openedMixin(theme),
+    }),
+    ...(open && {
+      ...hideMixin(theme),
+      '& .MuiDrawer-paper': hideMixin(theme),
     }),
   }),
 );
@@ -78,8 +95,9 @@ export default function SideNavBar(props: NavProps) {
         {children}
       </Box>
       {user? 
-      <Drawer elevation={0} 
+      <DrawerRight elevation={0} 
         anchor={'right'}
+        open={open}
         variant="permanent" 
             sx={{ 
               flexGrow: 1, 
@@ -88,7 +106,7 @@ export default function SideNavBar(props: NavProps) {
             }}>
       <DrawerHeader />
         <MyProfileBar user={user} userProfile={userProfile} verificationLink={verificationLink} />
-      </Drawer> : 
+      </DrawerRight> : 
       <></>}
     </Box>
   );

@@ -21,7 +21,7 @@ const UserCard: React.FC<IProps> = ({ profile, userProfile, handleAddFriend, han
     <Grid item xs={12} md={6} lg={4} >
     <Box m={3} 
       sx={{
-        width:'18rem',
+        width:'15rem',
         margin: 'auto',
       }}
         >

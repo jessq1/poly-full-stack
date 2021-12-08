@@ -107,6 +107,7 @@ function indexIncompletePayment(req: IGetUserAuthInfoRequest, res: Response) {
   })
 }
 
+//return the 5 most recent payment
 function indexProfilePayment(req: IGetUserAuthInfoRequest, res: Response) {
   const profileId = req.user.profile
   Payment.find({
@@ -116,6 +117,8 @@ function indexProfilePayment(req: IGetUserAuthInfoRequest, res: Response) {
       { 'paymentTo': profileId }
     ]
   })
+  .sort({'created': -1})
+  .limit(5)
   .populate([
     {
       path: 'initiator',

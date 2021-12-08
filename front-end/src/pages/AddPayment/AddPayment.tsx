@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { createPayment } from '../../services/paymentService'
 
-import { Button, FormControl, InputLabel, Input, InputAdornment, MenuItem } from '@mui/material';
+import { Button, Box, FormControl, InputLabel, Input, InputAdornment, MenuItem } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 interface IProps {
@@ -56,56 +56,67 @@ const AddPayment: React.FC<IProps> = ({ userProfile }) => {
 
   return (
       <>
-    <Button component={Link} to="/" color={'primary'} variant="text" >Cancel</Button>
-    <form
-      autoComplete="off"
-      onSubmit={handleSubmit}
-    > 
-      <FormControl fullWidth sx={{ m: 1 }} variant="standard">
-        <InputLabel htmlFor="amount">Amount</InputLabel>
-          <Input
-            id="amount"
-            value={amount}
-            onChange={handleChange('amount')}
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-          />
-        </FormControl>
-      <FormControl fullWidth sx={{ m: 1 }} variant="standard">
-        <InputLabel htmlFor="name">Name</InputLabel>
-          <Select
-            labelId="label"
-            id="standard"
-            value={person}
-            onChange={handlePersonChange}
-            label="Name"
-        >
-          {userProfile?.friends.map((friend: any) => {
-            return <MenuItem value={friend?._id}>{friend?.firstName}  {friend?.lastName} </MenuItem>
-          }
-          )}
-        </Select>
-        </FormControl>
+      <Box mx={6} my={3} >
+        <Button component={Link} to="/" color={'primary'} variant="text" >Cancel</Button>
+      <Box sx={{
+          margin: 'auto',
+          my: 3,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center'
+        }}>
+      <form
+        autoComplete="off"
+        onSubmit={handleSubmit}
+      > 
         <FormControl fullWidth sx={{ m: 1 }} variant="standard">
-        <InputLabel htmlFor="name">Note</InputLabel>
-          <Input
-            id="name"
-            value={note}
-            onChange={handleChange('note')}
-          />
-        </FormControl>
-      <Button color={'primary'} variant="outlined" 
-        type='submit' name='pay' 
-        onClick={() => (setFormData({ ...formData, methodIsPay: true }))} 
-        disabled={isFormInvalid()}>
-            Pay
-        </Button>
-      <Button color={'primary'} variant="outlined" 
-        type='submit' name='request' 
-        onClick={() => (setFormData({ ...formData, methodIsPay: false }))} 
-        disabled={isFormInvalid()} >
-            Request
-        </Button>
-    </form>
+          <InputLabel htmlFor="amount">Amount</InputLabel>
+            <Input
+              id="amount"
+              value={amount}
+              onChange={handleChange('amount')}
+              startAdornment={<InputAdornment position="start">$</InputAdornment>}
+            />
+          </FormControl>
+        <FormControl fullWidth sx={{ m: 1 }} variant="standard">
+          <InputLabel htmlFor="name">Name</InputLabel>
+            <Select
+              labelId="label"
+              id="standard"
+              value={person}
+              onChange={handlePersonChange}
+              label="Name"
+          >
+            {userProfile?.friends.map((friend: any) => {
+              return <MenuItem value={friend?._id}>{friend?.firstName}  {friend?.lastName} </MenuItem>
+            }
+            )}
+          </Select>
+          </FormControl>
+          <FormControl fullWidth sx={{ m: 1 }} variant="standard">
+          <InputLabel htmlFor="name">Note</InputLabel>
+            <Input
+              id="name"
+              value={note}
+              onChange={handleChange('note')}
+            />
+          </FormControl>
+          <Button color={'secondary'} variant="outlined" 
+            type='submit' name='pay' 
+            sx={{m: 2}}
+            onClick={() => (setFormData({ ...formData, methodIsPay: true }))} 
+            disabled={isFormInvalid()}>
+                Pay
+            </Button>
+          <Button color={'primary'} variant="outlined" 
+            type='submit' name='request' 
+            onClick={() => (setFormData({ ...formData, methodIsPay: false }))} 
+            disabled={isFormInvalid()} >
+                Request
+            </Button>
+      </form>
+        </Box>
+        </Box>
     </>
   );
 }

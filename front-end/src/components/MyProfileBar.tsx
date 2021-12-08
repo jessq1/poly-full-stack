@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getProfilePayments } from '../services/paymentService'
 
-import {Avatar, Card, Box, Divider, Button, Grid, Typography } from '@mui/material';
+import {Avatar, Box, Divider, Button, Typography } from '@mui/material';
 import { drawerWidth } from '../styles/nav'
 import ProfilePayment from '../components/ProfilePayment'
 import {date} from '../styles/date'
@@ -26,7 +26,6 @@ const MyProfileBar: React.FC<IProps> = ({ user, userProfile, verificationLink })
     return (
         <>
         <Box sx={{
-            width: drawerWidth, 
             mx: 3,
             my: 6,
             display: 'flex',

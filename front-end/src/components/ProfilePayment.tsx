@@ -15,7 +15,7 @@ const ProfilePayment: React.FC<IProps> = ({ userProfile, payment }) => {
   return (
     <>
     <Divider light sx={{width: '90%', my: 1.5 }}/>
-    <Box sx={{display: 'flex', gap: '1.5rem'}}>
+    <Box sx={{display: 'flex', gap: '1rem'}}>
     {(payment.paymentFrom?._id === userProfile?._id ) ? 
             <Typography variant={'subtitle2'} > Your paid  {payment.paymentTo.firstName} {payment.paymentTo.lastName}  $ {payment.amount}</Typography> : <Typography variant={'subtitle2'} > {payment.paymentFrom.firstName} {payment.paymentFrom.lastName} paid you $ {payment.amount} </Typography>} 
 

@@ -35,9 +35,9 @@ const Notification: React.FC<IProps> = ({ userProfile }) => {
 
   return (
       <>
-      <Box ml={5} mr={5} my={3}>
+      <Box mx={5} my={3}>
       <Typography variant={'h4'}>Incompelte Requests:</Typography>
-      <Box ml={5} mr={5} my={3}>
+      <Box mx={5} my={3}>
       {incompeletePayments.length == 0 ? <Typography variant={'body2'}>Nothing here yet</Typography> : <></>}
       {incompeletePayments.map((payment) => (
         <IncompeletePayments payment={payment}/>
