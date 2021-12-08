@@ -5,7 +5,6 @@ import { createMemoryHistory } from 'history';
 // connection to backend
 import * as authService from '../services/authService'
 import * as profileService from '../services/profileService'
-import { createPayment } from '../services/paymentService'
 
 // Component and pages
 import NavBar from '../components/NavBar';
@@ -44,7 +43,6 @@ function App() {
     verificationLink: null
   })
   const [open, setOpen] = React.useState(false);
-  const [payments, setPayments] = useState<any>([])
 
   useEffect( () => {
     async function fetchProfile(){
@@ -101,14 +99,9 @@ function App() {
   })
 	}
 
-  const handleCreatePayment = (PaymentData: any) => {
-		createPayment(PaymentData)
-		.then(newPaymentData => setPayments([...payments, newPaymentData]))
-	}
-
   return (
     <ThemeProvider theme={theme}>
-        <NavBar title = 'poly' user={info.user} handleLogout={handleLogout} open={open} handleDrawerOpen={handleDrawerOpen} />
+        <NavBar title = 'POLY' user={info.user} handleLogout={handleLogout} open={open} handleDrawerOpen={handleDrawerOpen} />
         <SideNavBar  user={info.user} open={open} handleDrawerClose={handleDrawerClose} >
           <Routes>
             <Route path='*' element={<NotFound />} />

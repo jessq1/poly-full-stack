@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-// import History from 'history'
 import { stripePromise } from './styles/stripeElement'
-import { Elements, CardElement } from '@stripe/react-stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 
 import './index.css';
 import App from './pages/App';

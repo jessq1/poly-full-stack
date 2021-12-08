@@ -5,7 +5,6 @@ import { Toolbar, Box, Button, Typography, IconButton } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { CgMenuGridO } from "react-icons/cg";
 
-
 import { Link } from 'react-router-dom'
 
 import { drawerWidth } from '../styles/nav'
@@ -46,7 +45,7 @@ export default function NavBar(props: NavProps) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar elevation={1} position="fixed" color="transparent" open={open}>
+      <AppBar elevation={0} position="fixed" color="transparent" open={open}>
       <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <IconButton
             color="inherit"
@@ -66,7 +65,7 @@ export default function NavBar(props: NavProps) {
           color="inherit"
           align="center"
           noWrap 
-          sx={{ flex: 1 }}
+          sx={{ flex: 1, letterSpacing: '5px', fontWeight:500 }}
         >
             {title}
         </Typography>

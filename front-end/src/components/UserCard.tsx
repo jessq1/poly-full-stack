@@ -14,12 +14,15 @@ interface IProps {
 
 
 const UserCard: React.FC<IProps> = ({ profile, userProfile, handleAddFriend, handleRemoveFriend }) => {
-    // const classes = useStyles();
 
   return (
     <>
     <Grid item xs={12} md={6} lg={4} >
     <Box m={3} 
+      sx={{
+        width:'18rem',
+        margin: 'auto',
+      }}
         >
     <Card >
       <Box m={1} pt={2}
@@ -38,11 +41,13 @@ const UserCard: React.FC<IProps> = ({ profile, userProfile, handleAddFriend, han
       <Box m={1} >
       { !(userProfile?._id === profile._id) && !(userProfile?.friends?.some((eachProfile: any) => eachProfile._id === profile._id)) &&
       <Button 
-        size="small" variant="contained" color="secondary" startIcon={<PersonAddIcon />} onClick={() => handleAddFriend(profile._id)}> Friend</Button> 
+        size="small" variant="contained" 
+        disableElevation color="secondary" startIcon={<PersonAddIcon />} onClick={() => handleAddFriend(profile._id)}> Friend</Button> 
       }
       { !(userProfile?._id === profile._id) && (userProfile?.friends?.some((eachProfile: any) => eachProfile._id === profile._id)) &&
       <Button 
-        size="small" variant="contained" startIcon={<RemoveCircleIcon />}onClick={() => handleRemoveFriend(profile._id)}> Unfriend</Button> 
+        size="small" variant="contained" 
+        disableElevation startIcon={<RemoveCircleIcon />} onClick={() => handleRemoveFriend(profile._id)}> Unfriend</Button> 
       }   
       </Box>
       </Box>
