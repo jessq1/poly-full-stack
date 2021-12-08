@@ -12,12 +12,16 @@ const PendingPayments: React.FC<IProps> = ({ payment, handleDeletePayment }) => 
 
   return (
     <>
+    <Divider />
+    <Box sx={{display: 'flex', m: 1, justifyContent: 'space-between'}} >
+      <Box>
     {(payment.methodIsPay) ? 
             <Typography variant={'subtitle1'} key={payment._id}> Your request to pay {payment.person.firstName} {payment.person.lastName}  $ {payment.amount} is incomplete</Typography> : <Typography variant={'subtitle1'} key={payment._id}> Your request to {payment.person.firstName} {payment.person.lastName} is still pending </Typography>} 
-      {(payment.methodIsPay) ? 
-        <Button component={Link} to={`/checkout/${payment._id}`} color={'primary'} variant="outlined">Complete</Button> :
-        <Button onClick={()=> handleDeletePayment(payment._id)} color='warning' variant="outlined">Delete</Button> }
-
+      </Box>
+    {(payment.methodIsPay) ? 
+        <Button component={Link} to={`/checkout/${payment._id}`} color='primary' disableElevation variant="contained">Complete</Button> :
+        <Button onClick={()=> handleDeletePayment(payment._id)} color='secondary' disableElevation variant="contained">Delete</Button> }
+    </Box>
     </>
   );
 }

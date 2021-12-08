@@ -40,12 +40,12 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-interface Props {
+interface ScrollProps {
   window?: () => Window;
   children: React.ReactElement;
 }
 
-function HideOnScroll(props: Props) {
+function HideOnScroll(props: ScrollProps) {
   const { children, window } = props;
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,

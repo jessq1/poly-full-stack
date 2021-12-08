@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { styled, useTheme } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
-import { Box, List, Divider, Drawer, ListItemIcon, ListItemText, IconButton } from '@mui/material';
+import { Box, List, Divider, IconButton } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
