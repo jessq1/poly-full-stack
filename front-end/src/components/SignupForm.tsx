@@ -56,7 +56,7 @@ const SignupForm: React.FC<IProps> = (props) => {
         autoComplete="off"
         onSubmit={handleSubmit}
       >
-         <div >
+         <div style={{margin: '.8rem'}}>
            <TextField
              type="text"
              autoComplete="off"
@@ -68,7 +68,7 @@ const SignupForm: React.FC<IProps> = (props) => {
              variant="outlined"
            />
          </div>
-         <div >
+         <div style={{margin: '.8rem'}}>
            <TextField
              type="text"
              autoComplete="off"
@@ -80,7 +80,7 @@ const SignupForm: React.FC<IProps> = (props) => {
              variant="outlined"
            />
          </div>
-         <div >
+         <div style={{margin: '.8rem'}}>
            <TextField
              type="text"
              autoComplete="off"
@@ -92,7 +92,7 @@ const SignupForm: React.FC<IProps> = (props) => {
              variant="outlined"
            />
          </div>
-         <div >
+         <div style={{margin: '.8rem'}}>
            <TextField
              type="password"
              autoComplete="off"
@@ -104,7 +104,7 @@ const SignupForm: React.FC<IProps> = (props) => {
              variant="outlined"
            />
          </div>
-         <div >
+         <div style={{margin: '.8rem'}}>
            <TextField
              type="password"
              autoComplete="off"
@@ -117,8 +117,8 @@ const SignupForm: React.FC<IProps> = (props) => {
            />
          </div>
          <div >
-           <Button  color={'primary'} variant="outlined" type='submit' disabled={isFormInvalid()} >Sign Up</Button>
-           <Button component={Link} to="/"color={'primary'}variant="outlined" >Cancel</Button>
+           <Button style={{margin: '.5rem'}} color={'primary'} variant="outlined" type='submit' disabled={isFormInvalid()} >Sign Up</Button>
+           <Button style={{margin: '.5rem'}} component={Link} to="/"color={'primary'}variant="outlined" >Cancel</Button>
          </div>
 
       </form>

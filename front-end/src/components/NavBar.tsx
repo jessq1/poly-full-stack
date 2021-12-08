@@ -85,13 +85,13 @@ export default function NavBar(props: NavProps) {
           color="inherit"
           align="center"
           noWrap 
-          sx={{ flex: 1, letterSpacing: '5px', fontWeight:500 }}
+          sx={{ flex: 1, letterSpacing: 8, fontWeight:600 }}
         >
             {title}
         </Typography>
         {user? <Button variant="outlined" size="small" component={Link} to='' onClick={handleLogout}>
           Log Out
-        </Button> : <Button variant="outlined" size="small" component={Link} to='/signup'>
+        </Button> : <Button variant="contained" size="small" component={Link} to='/signup'>
           Sign up
         </Button>}
         

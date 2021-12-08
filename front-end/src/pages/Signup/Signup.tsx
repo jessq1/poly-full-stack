@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import SignupForm from '../../components/SignupForm'
-// import styles from './Signup.module.css'
-import { Box, Typography, Divider } from '@mui/material';
+import { Box, Button, Typography, Divider } from '@mui/material';
 import { MemoryHistory } from 'history'
+import { Link } from 'react-router-dom'
+
 
 interface IProps {
   history: MemoryHistory,
@@ -16,25 +17,38 @@ const Signup: React.FC<IProps> = ({history, handleSignupOrLogin, userProfile}) =
 
     return (
       <>
-        <Box mr={5} my={3} p={5} >
+        <Box mr={5} my={3} p={5} sx={{
+          display: 'flex',
+        }} >
+        <Box sx={{
+          margin: 'auto',
+          textAlign: 'center',
+        }}>
+          <Typography variant={'h5'} color={'primary'}
+            sx={{
+              letterSpacing:8,
+            }} >SIGN UP</Typography>
+          <Typography variant={'body1'} color={'primary'}>{message}</Typography>
 
-        <Typography variant={'h4'} color={'primary'}>SIGN UP</Typography>
-        <Typography variant={'body1'} color={'primary'}>{message}</Typography>
-
-        <Box mr={5} my={3} >
-        <Divider/>
+          <Box mx={2} my={3} >
+          <Divider/>
+          </Box>
+          <SignupForm 
+            history={history} 
+            handleSignupOrLogin={handleSignupOrLogin}
+            message={message} 
+            setMessage={setMessage}
+            userProfile={userProfile} />
+          <div>
+          <Typography variant={'subtitle1'} color={'black'}>Already have an account? Login</Typography>
+          <Button style={
+            {display: 'inline', 
+            textDecoration:'underline',
+            fontWeight: 600}} 
+            color={'secondary'} href='/login'>HERE</Button>
+          </div>
         </Box>
-        <SignupForm 
-          history={history} 
-          handleSignupOrLogin={handleSignupOrLogin}
-          message={message} 
-          setMessage={setMessage}
-          userProfile={userProfile} />
         </Box>
-        <div className='player-wrapper'>
-        <Typography variant={'subtitle1'} color={'black'}>Already have an account? Login</Typography>
-        <a href="/login">HERE</a>
-        </div>
 
       </>
     )
