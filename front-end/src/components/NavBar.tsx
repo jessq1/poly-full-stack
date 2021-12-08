@@ -5,10 +5,7 @@ import { Toolbar, Box, Button, Typography, IconButton, useScrollTrigger, Slide }
 import CssBaseline from '@mui/material/CssBaseline';
 import { CgMenuGridO } from "react-icons/cg";
 
-import { Link } from 'react-router-dom'
-
 import { drawerWidth } from '../styles/nav'
-import {theme} from '../styles/theme'
 
 interface NavProps {
   title: string,

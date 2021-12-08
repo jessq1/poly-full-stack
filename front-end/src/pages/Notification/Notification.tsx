@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 import { deletePayment, getIncompeltePayments, getPendingPayments } from '../../services/paymentService'
 import IncompeletePayments from '../../components/IncompeletePayments'
 import PendingPayments from '../../components/PendingPayments'
 
 import {IPayment} from '../../types/models'
 
-import {Box, Grid, Typography} from '@mui/material';
+import {Box, Typography} from '@mui/material';
 
 interface IProps {
     userProfile: any,

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { getPayments, getIncompeltePayments, getPendingPayments } from '../../services/paymentService'
+import { getPayments } from '../../services/paymentService'
 import PaymentCard from '../../components/PaymentCard'
 import {IPayment} from '../../types/models'
 

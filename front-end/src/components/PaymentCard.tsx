@@ -1,5 +1,5 @@
 import React from 'react'
-import {Typography, Card, Box, Avatar, CardMedia, Grid } from '@mui/material';
+import {Typography, Card, Box, Avatar, Grid } from '@mui/material';
 import {IPayment} from '../types/models'
 
 interface IProps {

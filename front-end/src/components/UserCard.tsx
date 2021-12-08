@@ -3,7 +3,6 @@ import {Avatar, Card, Box, Divider, Button, Grid, Typography } from '@mui/materi
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import {date} from '../styles/date'
-import { CgProfile } from 'react-icons/cg';
 
 interface IProps {
     profile: any,
@@ -35,7 +34,7 @@ const UserCard: React.FC<IProps> = ({ profile, userProfile, handleAddFriend, han
              }} >
     <Avatar 
         className="avatar"
-        alt="User Avatar" src={profile.avatar}
+        alt={profile.firstName} src={profile.avatar}
         sx={{ width: '3.5rem', height: '3.5rem', mb: 1.5 }} />
 
         <Typography variant="h6" >{profile.firstName} {profile.lastName}</Typography>

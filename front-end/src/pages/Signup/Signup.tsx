@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import SignupForm from '../../components/SignupForm'
 import { Box, Button, Typography, Divider } from '@mui/material';
 import { MemoryHistory } from 'history'
-import { Link } from 'react-router-dom'
 
 
 interface IProps {

@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import {Typography, Box, Divider, Button, Grid } from '@mui/material';
+import {Typography, Box, Divider } from '@mui/material';
 import {dateDM} from '../styles/date'
 import {IPayment} from '../types/models'
 

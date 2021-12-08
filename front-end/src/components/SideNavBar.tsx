@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom'
 
-import { styled, useTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
 import { Box, List, Divider, IconButton } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -23,6 +22,7 @@ interface NavProps {
     userProfile: any,
     open?: boolean,
     handleDrawerClose: () => void,
+    handleVerifyAccount: (userProfile: any) => Promise<void>
     children?: JSX.Element | JSX.Element[],
   }
 
@@ -61,7 +61,7 @@ const DrawerRight = styled(MuiDrawer)(
 );
 
 export default function SideNavBar(props: NavProps) {
-  const { user, userProfile, verificationLink, open, handleDrawerClose, children } = props;
+  const { user, userProfile, verificationLink, open, handleDrawerClose, handleVerifyAccount, children } = props;
 
 
   return (
@@ -89,6 +89,10 @@ export default function SideNavBar(props: NavProps) {
             child={<MarkEmailUnreadIcon fontSize='large' style={{ fill:`${theme.palette.primary.main}`}} />} />
         </List>
         <Divider />
+          {open ?
+              <MyProfileBar user={user} userProfile={userProfile} handleVerifyAccount={handleVerifyAccount} verificationLink={verificationLink} /> :
+              <></>
+        }
       </DrawerLeft>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
@@ -105,7 +109,7 @@ export default function SideNavBar(props: NavProps) {
               width: drawerWidth, 
             }}>
       <DrawerHeader />
-        <MyProfileBar user={user} userProfile={userProfile} verificationLink={verificationLink} />
+        <MyProfileBar user={user} userProfile={userProfile} handleVerifyAccount={handleVerifyAccount} verificationLink={verificationLink} />
       </DrawerRight> : 
       <></>}
     </Box>

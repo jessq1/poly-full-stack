@@ -16,7 +16,7 @@ const IncompeletePayments: React.FC<IProps> = ({ payment }) => {
   return (
     <>
     <Divider />
-    <Box sx={{display: 'flex', m: 1, justifyContent: 'space-between'}} >
+    <Box sx={{display: 'flex', m: 1, justifyContent: 'space-between', alignItems: 'center'}} >
       <Box>
       {(payment.methodIsPay) ? 
         <Typography variant={'subtitle1'} key={payment._id}> {payment.initiator.firstName} {payment.initiator.lastName} wants to pay you $ {payment.amount} </Typography> : <Typography variant={'subtitle1'} key={payment._id}> {payment.initiator.firstName} {payment.initiator.lastName} wants to request $ {payment.amount} from you </Typography>}
