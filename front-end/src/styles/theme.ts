@@ -26,4 +26,7 @@ export const theme= createTheme({
       dark:'#F3A3AD',
 		}
   },
+  zIndex: {
+    speedDial: 1250,
+  },
 });

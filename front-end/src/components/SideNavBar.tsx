@@ -19,6 +19,8 @@ import MyProfileBar from './MyProfileBar'
 
 interface NavProps {
     user: any,
+    verificationLink: any,
+    userProfile: any,
     open?: boolean,
     handleDrawerClose: () => void,
     children?: JSX.Element | JSX.Element[],
@@ -42,7 +44,7 @@ const DrawerLeft = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'op
 );
 
 export default function SideNavBar(props: NavProps) {
-  const { user, open, handleDrawerClose, children } = props;
+  const { user, userProfile, verificationLink, open, handleDrawerClose, children } = props;
 
 
   return (
@@ -85,7 +87,7 @@ export default function SideNavBar(props: NavProps) {
               width: drawerWidth, 
             }}>
       <DrawerHeader />
-        <MyProfileBar user={user} />
+        <MyProfileBar user={user} userProfile={userProfile} verificationLink={verificationLink} />
       </Drawer> : 
       <></>}
     </Box>

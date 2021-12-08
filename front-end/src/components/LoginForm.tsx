@@ -35,7 +35,7 @@ const LoginForm: React.FC<IProps> = (props) => {
     try {
       await authService.login(input)
       handleSignupOrLogin()
-      navigate('/notifications')
+      navigate('/')
     } catch (err: any) {
       alert('Invalid Credentials')
     }

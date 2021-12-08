@@ -38,6 +38,7 @@ const Notification: React.FC<IProps> = ({ userProfile }) => {
       <Box ml={5} mr={5} my={3}>
       <Typography variant={'h4'}>Incompelte Requests:</Typography>
       <Box ml={5} mr={5} my={3}>
+      {incompeletePayments.length == 0 ? <Typography variant={'body2'}>Nothing here yet</Typography> : <></>}
       {incompeletePayments.map((payment) => (
         <IncompeletePayments payment={payment}/>
       )
@@ -45,6 +46,7 @@ const Notification: React.FC<IProps> = ({ userProfile }) => {
       </Box>
     <Typography variant={'h4'}>Pending Requests:</Typography>
     <Box ml={5} mr={5} my={3}>
+    {pendingPayments.length == 0 ? <Typography variant={'body2'}>Nothing here yet</Typography> : <></>}
       {pendingPayments.map((payment) => (
         <PendingPayments payment={payment} handleDeletePayment={handleDeletePayment} />
       )

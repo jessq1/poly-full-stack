@@ -43,7 +43,7 @@ async function createPaymentIntent(payment: any) {
 }
 
 function index(req: IGetUserAuthInfoRequest, res: Response) {
-  Payment.find({'completed': false})
+  Payment.find({'completed': true})
   .populate([
     {
       path: 'initiator',
@@ -110,6 +110,7 @@ function indexIncompletePayment(req: IGetUserAuthInfoRequest, res: Response) {
 function indexProfilePayment(req: IGetUserAuthInfoRequest, res: Response) {
   const profileId = req.user.profile
   Payment.find({
+    'completed': true,
     $or: [
       { 'paymentFrom': profileId },
       { 'paymentTo': profileId }
