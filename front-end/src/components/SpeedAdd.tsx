@@ -1,22 +1,28 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom'
 
-import SpeedDial from '@mui/material/SpeedDial';
-import SpeedDialIcon from '@mui/material/SpeedDialIcon';
-import SpeedDialAction from '@mui/material/SpeedDialAction';
+import { IconButton, SpeedDial, SpeedDialIcon, SpeedDialAction } from '@mui/material';
 import { BiDollar } from "react-icons/bi";
 import { FiUserPlus } from "react-icons/fi";
+import {theme} from '../styles/theme'
+
 
 const actions = [
-  { icon: <Link to='/users'><FiUserPlus fontSize={23}/></Link>, name: 'Add Friend' },
-  { icon: <Link to='/addpayment'><BiDollar fontSize={23}/></Link>, name: 'Add Payment' },
+  { icon: 
+    <IconButton component={Link} to='/users'>
+      <FiUserPlus fontSize={23} style={{ fill:`${theme.palette.primary.dark}`}}/>
+    </IconButton>, name: 'Add Friend' },
+  { icon: 
+    <IconButton component={Link} to='/addpayment'>
+      <BiDollar fontSize={23} style={{ fill:`${theme.palette.primary.dark}`}}/>
+    </IconButton>, name: 'Add Payment' },
 ];
 
 export default function SpeedAdd() {
   return (
       <SpeedDial
         ariaLabel="SpeedDial basic example"
-        sx={{ position: 'absolute', bottom: 16, right: 16 }}
+        sx={{ position: 'fixed', bottom: 16, right: 16 }}
         color='black'
         icon={<SpeedDialIcon />}
       >
@@ -28,5 +34,6 @@ export default function SpeedAdd() {
           />
         ))}
       </SpeedDial>
+
   );
 }

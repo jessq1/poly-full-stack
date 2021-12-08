@@ -12,6 +12,8 @@ import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 
 import { drawerWidth, openedMixin, closedMixin, DrawerHeader } from '../styles/nav'
+import {theme} from '../styles/theme'
+
 
 interface NavProps {
     user: any,
@@ -39,13 +41,17 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function SideNavBar(props: NavProps) {
   const theme = useTheme();
-  const { user, open, handleDrawerClose, children } = props;
+  const { open, handleDrawerClose, children } = props;
 
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <Drawer elevation={0} variant="permanent" open={open}>
+      <Drawer 
+        elevation={0} 
+        variant="permanent" 
+        open={open}
+        >
         <DrawerHeader>
             {open? 
                 <IconButton onClick={handleDrawerClose}>
@@ -56,23 +62,23 @@ export default function SideNavBar(props: NavProps) {
         <Divider />
         <List>
             <ListItem button key='Users'component={Link} to='/users' >
-                <ListItemIcon>
-                    <PeopleIcon fontSize='large' />
+                <ListItemIcon color='primary.main'>
+                    <PeopleIcon fontSize='large' style={{ fill:`${theme.palette.primary.main}`}} />
                 </ListItemIcon>
-                <ListItemText primary='Users' />
+                <ListItemText primary='USERS' style={{ color:`${theme.palette.primary.dark}`}} />
             </ListItem>
-            <ListItem button key='Payments'component={Link} to='/payments' >
+            <ListItem button key='Payments' component={Link} to='/payments' >
                 <ListItemIcon>
-                    <LocalAtmIcon fontSize='large' />
+                    <LocalAtmIcon fontSize='large' style={{ fill:`${theme.palette.primary.main}`}} />
                 </ListItemIcon>
-                <ListItemText primary='Payments' />
+                <ListItemText primary='PAYMENTS' style={{ color:`${theme.palette.primary.dark}`}} />
             </ListItem>
             
             <ListItem button key='Notifications' component={Link} to='/notifications'>
                 <ListItemIcon>
-                    <MarkEmailUnreadIcon fontSize='large' />
+                    <MarkEmailUnreadIcon fontSize='large' style={{ fill:`${theme.palette.primary.main}`}} />
                 </ListItemIcon>
-                <ListItemText primary='Notifications' />
+                <ListItemText primary='NOTIFICATIONS' style={{ color:`${theme.palette.primary.dark}`}} />
             </ListItem>
           
         </List>

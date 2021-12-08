@@ -1,13 +1,14 @@
 import * as React from 'react';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import { styled } from '@mui/material/styles';
-import { Toolbar, Box, Button, Typography, IconButton } from '@mui/material';
+import { Toolbar, Box, Button, Typography, IconButton, useScrollTrigger, Slide } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { CgMenuGridO } from "react-icons/cg";
 
 import { Link } from 'react-router-dom'
 
 import { drawerWidth } from '../styles/nav'
+import {theme} from '../styles/theme'
 
 interface NavProps {
   title: string,
@@ -39,12 +40,31 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
+interface Props {
+  window?: () => Window;
+  children: React.ReactElement;
+}
+
+function HideOnScroll(props: Props) {
+  const { children, window } = props;
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+  });
+
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
+}
+
 export default function NavBar(props: NavProps) {
   const { title, user, handleLogout, open, handleDrawerOpen } = props;
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
+      <HideOnScroll {...props}>
       <AppBar elevation={0} position="fixed" color="transparent" open={open}>
       <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <IconButton
@@ -57,7 +77,7 @@ export default function NavBar(props: NavProps) {
               ...(open && { display: 'none' }),
             }}
           >
-            <CgMenuGridO fontSize={30} />
+            <CgMenuGridO fontSize={30} style={{ color:'#E26372'}}/>
           </IconButton>
         <Typography
           component="h2"
@@ -78,6 +98,7 @@ export default function NavBar(props: NavProps) {
       </Toolbar>
       
       </AppBar>
+      </HideOnScroll>
       </Box>
   );
 }
