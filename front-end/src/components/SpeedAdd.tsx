@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom'
 
 import { IconButton, SpeedDial, SpeedDialIcon, SpeedDialAction } from '@mui/material';
 import { BiDollar } from "react-icons/bi";
-import { FiUserPlus } from "react-icons/fi";
+import { MdPersonAddAlt1 } from "react-icons/md";
 import {theme} from '../styles/theme'
 
 
 const actions = [
   { icon: 
     <IconButton component={Link} to='/users'>
-      <FiUserPlus fontSize={23} style={{ fill:`${theme.palette.primary.dark}`}}/>
+      <MdPersonAddAlt1 fontSize={23} style={{ fill:`${theme.palette.primary.dark}`}}/>
     </IconButton>, name: 'Add Friend' },
   { icon: 
     <IconButton component={Link} to='/addpayment'>
