@@ -65,7 +65,7 @@ export default function NavBar(props: NavProps) {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <HideOnScroll {...props}>
-      <AppBar elevation={0} position="fixed" color="transparent" open={open}>
+      <AppBar elevation={0} position="fixed" color="primary" open={open}>
       <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <IconButton
             color="inherit"
@@ -77,7 +77,7 @@ export default function NavBar(props: NavProps) {
               ...(open && { display: 'none' }),
             }}
           >
-            <CgMenuGridO fontSize={30} style={{ color:'#E26372'}}/>
+            <CgMenuGridO fontSize={30} style={{ color:'#fff'}}/>
           </IconButton>
         <Typography
           component="h2"
@@ -85,13 +85,13 @@ export default function NavBar(props: NavProps) {
           color="inherit"
           align="center"
           noWrap 
-          sx={{ flex: 1, letterSpacing: 8, fontWeight:600 }}
+          sx={{ flex: 1, letterSpacing: 8, fontWeight:600, transform: 'translateX(1.2rem)' }}
         >
             {title}
         </Typography>
-        {user? <Button variant="outlined" size="small" component={Link} to='' onClick={handleLogout}>
+        {user? <Button color='secondary' variant="contained" size="small" disableElevation href='' onClick={handleLogout}>
           Log Out
-        </Button> : <Button variant="contained" size="small" component={Link} to='/signup'>
+        </Button> : <Button color='secondary' variant="contained" size="small" disableElevation href='/signup'>
           Sign up
         </Button>}
         

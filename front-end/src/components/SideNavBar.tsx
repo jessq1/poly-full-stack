@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { styled, useTheme } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
-import { Box, List, Divider, ListItem, ListItemIcon, ListItemText, IconButton } from '@mui/material';
+import { Box, List, Divider, Drawer, ListItemIcon, ListItemText, IconButton } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -14,6 +14,7 @@ import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import { drawerWidth, openedMixin, closedMixin, DrawerHeader } from '../styles/nav'
 import {theme} from '../styles/theme'
 import IconListItem from './IconListItem'
+import MyProfileBar from './MyProfileBar'
 
 
 interface NavProps {
@@ -23,7 +24,7 @@ interface NavProps {
     children?: JSX.Element | JSX.Element[],
   }
 
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+const DrawerLeft = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     width: drawerWidth,
     flexShrink: 0,
@@ -41,18 +42,18 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function SideNavBar(props: NavProps) {
-  const { open, handleDrawerClose, children } = props;
+  const { user, open, handleDrawerClose, children } = props;
 
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <Drawer 
+      <DrawerLeft 
         elevation={0} 
         variant="permanent" 
         open={open}
         >
-        <DrawerHeader>
+        <DrawerHeader sx={{backgroundColor:'primary'}} >
             {open? 
                 <IconButton onClick={handleDrawerClose}>
                     {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
@@ -69,11 +70,24 @@ export default function SideNavBar(props: NavProps) {
             child={<MarkEmailUnreadIcon fontSize='large' style={{ fill:`${theme.palette.primary.main}`}} />} />
         </List>
         <Divider />
-      </Drawer>
+      </DrawerLeft>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         {children}
       </Box>
+      {user? 
+      <Drawer elevation={0} 
+        anchor={'right'}
+        variant="permanent" 
+            sx={{ 
+              flexGrow: 1, 
+              p: 3,
+              width: drawerWidth, 
+            }}>
+      <DrawerHeader />
+        <MyProfileBar user={user} />
+      </Drawer> : 
+      <></>}
     </Box>
   );
 }

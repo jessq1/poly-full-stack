@@ -106,7 +106,7 @@ function App() {
           <Routes>
             <Route path='*' element={<NotFound />} />
 
-            <Route path='/' element={<Landing user={info.user} />} />
+            <Route path='/' element={info.user ? <Landing user={info.user} />: <Navigate to='/login' /> } />
             <Route path='/signup' element={<Signup history={history} handleSignupOrLogin={handleSignupOrLogin} userProfile={info.userProfile} />} />
             <Route path='/login' element={<Login history={history} handleSignupOrLogin={handleSignupOrLogin} />} />
             <Route path='/stripeauth' element={info.user ? <Auth user={info.user} userProfile={info.userProfile} handleVerifyAccount={handleVerifyAccount} verificationLink={info.verificationLink} />: <Navigate to='/login' /> } />
