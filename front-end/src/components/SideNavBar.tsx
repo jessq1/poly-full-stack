@@ -13,6 +13,7 @@ import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 
 import { drawerWidth, openedMixin, closedMixin, DrawerHeader } from '../styles/nav'
 import {theme} from '../styles/theme'
+import IconListItem from './IconListItem'
 
 
 interface NavProps {
@@ -40,7 +41,6 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function SideNavBar(props: NavProps) {
-  const theme = useTheme();
   const { open, handleDrawerClose, children } = props;
 
 
@@ -61,26 +61,12 @@ export default function SideNavBar(props: NavProps) {
         </DrawerHeader>
         <Divider />
         <List>
-            <ListItem button key='Users'component={Link} to='/users' >
-                <ListItemIcon color='primary.main'>
-                    <PeopleIcon fontSize='large' style={{ fill:`${theme.palette.primary.main}`}} />
-                </ListItemIcon>
-                <ListItemText primary='USERS' style={{ color:`${theme.palette.primary.dark}`}} />
-            </ListItem>
-            <ListItem button key='Payments' component={Link} to='/payments' >
-                <ListItemIcon>
-                    <LocalAtmIcon fontSize='large' style={{ fill:`${theme.palette.primary.main}`}} />
-                </ListItemIcon>
-                <ListItemText primary='PAYMENTS' style={{ color:`${theme.palette.primary.dark}`}} />
-            </ListItem>
-            
-            <ListItem button key='Notifications' component={Link} to='/notifications'>
-                <ListItemIcon>
-                    <MarkEmailUnreadIcon fontSize='large' style={{ fill:`${theme.palette.primary.main}`}} />
-                </ListItemIcon>
-                <ListItemText primary='NOTIFICATIONS' style={{ color:`${theme.palette.primary.dark}`}} />
-            </ListItem>
-          
+          <IconListItem keyName={'USERS'} url={'/users'} 
+            child={<PeopleIcon fontSize='large' style={{ fill:`${theme.palette.primary.main}`}} />} />
+          <IconListItem keyName={'PAYMENTS'} url={'/payments'} 
+            child={<LocalAtmIcon fontSize='large' style={{ fill:`${theme.palette.primary.main}`}} />} />
+          <IconListItem keyName={'NOTIFICATIONS'} url={'/notifications'} 
+            child={<MarkEmailUnreadIcon fontSize='large' style={{ fill:`${theme.palette.primary.main}`}} />} />
         </List>
         <Divider />
       </Drawer>
