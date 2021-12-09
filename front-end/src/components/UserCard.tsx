@@ -1,9 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import {Avatar, Card, Box, Divider, Button, Grid } from '@mui/material';
+import {Avatar, Card, Box, Divider, Button, Grid, Typography } from '@mui/material';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import { styled } from '@mui/material/styles';
+import {date} from '../styles/date'
 
 interface IProps {
     profile: any,
@@ -14,13 +13,14 @@ interface IProps {
 
 
 const UserCard: React.FC<IProps> = ({ profile, userProfile, handleAddFriend, handleRemoveFriend }) => {
+  const dateString = date(profile.createdAt)
 
   return (
     <>
     <Grid item xs={12} md={6} lg={4} >
     <Box m={3} 
       sx={{
-        width:'18rem',
+        width:'15rem',
         margin: 'auto',
       }}
         >
@@ -34,9 +34,12 @@ const UserCard: React.FC<IProps> = ({ profile, userProfile, handleAddFriend, han
              }} >
     <Avatar 
         className="avatar"
-        alt="User Avatar" src={profile.avatar} variant="rounded"/>
+        alt={profile.firstName} src={profile.avatar}
+        sx={{ width: '3.5rem', height: '3.5rem', mb: 1.5 }} />
 
-        <h4>{profile.firstName} {profile.lastName}</h4>
+        <Typography variant="h6" >{profile.firstName} {profile.lastName}</Typography>
+        <Typography variant="body2" >Member since {dateString}</Typography>
+
       <Divider/>
       <Box m={1} >
       { !(userProfile?._id === profile._id) && !(userProfile?.friends?.some((eachProfile: any) => eachProfile._id === profile._id)) &&

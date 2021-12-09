@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 import { deletePayment, getIncompeltePayments, getPendingPayments } from '../../services/paymentService'
 import IncompeletePayments from '../../components/IncompeletePayments'
 import PendingPayments from '../../components/PendingPayments'
 
 import {IPayment} from '../../types/models'
 
-import {Box, Grid, Typography} from '@mui/material';
+import {Box, Typography} from '@mui/material';
 
 interface IProps {
     userProfile: any,
@@ -35,9 +34,10 @@ const Notification: React.FC<IProps> = ({ userProfile }) => {
 
   return (
       <>
-      <Box ml={5} mr={5} my={3}>
+      <Box mx={5} my={3}>
       <Typography variant={'h4'}>Incompelte Requests:</Typography>
-      <Box ml={5} mr={5} my={3}>
+      <Box mx={5} my={3}>
+      {incompeletePayments.length == 0 ? <Typography variant={'body2'}>Nothing here yet</Typography> : <></>}
       {incompeletePayments.map((payment) => (
         <IncompeletePayments payment={payment}/>
       )
@@ -45,6 +45,7 @@ const Notification: React.FC<IProps> = ({ userProfile }) => {
       </Box>
     <Typography variant={'h4'}>Pending Requests:</Typography>
     <Box ml={5} mr={5} my={3}>
+    {pendingPayments.length == 0 ? <Typography variant={'body2'}>Nothing here yet</Typography> : <></>}
       {pendingPayments.map((payment) => (
         <PendingPayments payment={payment} handleDeletePayment={handleDeletePayment} />
       )

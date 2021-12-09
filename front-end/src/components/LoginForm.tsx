@@ -40,6 +40,10 @@ const LoginForm: React.FC<IProps> = (props) => {
       alert('Invalid Credentials')
     }
   }
+  const isFormInvalid = () => {
+    const { email, password } = input
+    return !( email && password !== '')
+  }
 
     const { email, password } = input
     return (
@@ -72,7 +76,7 @@ const LoginForm: React.FC<IProps> = (props) => {
            />
          </div>
          <div >
-           <Button style={{margin: '.5rem'}} color={'primary'} variant="outlined" type='submit' >Login</Button>
+           <Button style={{margin: '.5rem'}} color={'primary'} variant="outlined" type='submit' disabled={isFormInvalid()} >Login</Button>
            <Button style={{margin: '.5rem'}} component={Link} to="/"color={'primary'}variant="outlined" >Cancel</Button>
 
          </div>

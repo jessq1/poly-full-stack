@@ -23,6 +23,15 @@ export const closedMixin = (theme: Theme): CSSObject => ({
   },
 });
 
+export const hideMixin = (theme: Theme): CSSObject => ({
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  overflowX: 'hidden',
+  display: 'none',
+});
+
 export const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',

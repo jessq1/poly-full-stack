@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { getPayments, getIncompeltePayments, getPendingPayments } from '../../services/paymentService'
+import { getPayments } from '../../services/paymentService'
 import PaymentCard from '../../components/PaymentCard'
 import {IPayment} from '../../types/models'
 
@@ -21,18 +20,16 @@ const PaymentIndex: React.FC<IProps> = ({ userProfile }) => {
 
   return (
       <>
-      <Box ml={5} mr={5} my={3}>
+      <Box mx={5} my={3}>
       <Typography variant={'h4'}>All Payments:</Typography>
-      <Box ml={5} mr={5} my={3}>
-      <Grid container spacing={2}>
-      {allPayments.map((payment) => (
-        <PaymentCard payment={payment}/>
-        //  <Typography variant={'subtitle1'} key={payment._id}>{payment._id}</Typography>
-      )
+      <Box my={3}>
+      <Grid container spacing={3}>
+        {allPayments.map((payment) => (
+          <PaymentCard payment={payment}/>
+          )
           )}
         </Grid>
-      </Box>
-    
+        </Box>
       </Box>
     </>
   );

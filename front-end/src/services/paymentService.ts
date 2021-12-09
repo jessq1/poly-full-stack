@@ -33,6 +33,13 @@ function getPendingPayments() {
   .then(res => res.json())
 }
 
+function getProfilePayments() {
+  return fetch(`${BASE_URL}/profile`, {
+    headers: {'Authorization': `Bearer ${tokenService.getToken()}`}
+  })
+  .then(res => res.json())
+}
+
 function getPaymentInfo(id: String) {
   return fetch(`${BASE_URL}/${id}`, {
     headers: {'Authorization': `Bearer ${tokenService.getToken()}`}
@@ -65,6 +72,7 @@ export {
   getPayments,
   getIncompeltePayments,
   getPendingPayments,
+  getProfilePayments,
   getPaymentInfo,
   deletePayment,
   updatePaymentStatus,

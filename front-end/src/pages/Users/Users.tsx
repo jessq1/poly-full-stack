@@ -21,7 +21,7 @@ const Users: React.FC<IProps> = ({userProfile, handleAddFriend, handleRemoveFrie
 
   return (
     <>
-    <Box ml={5} mr={5} my={3}>
+    <Box mx={5} my={3}>
       <Typography variant={'h4'}>All Users</Typography>
       <Box my={3}>
         <Grid container spacing={3}>

@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getPaymentInfo, updatePaymentStatus } from '../../services/paymentService'
 
-import { Button } from '@mui/material';
+import { Button, Box } from '@mui/material';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-
-import {IPayment} from '../../types/models'
 
 interface IProps {
     userProfile: any,
@@ -48,14 +46,21 @@ const Checkout: React.FC<IProps> = ({ userProfile }) => {
 
   return (
       <>
-    <Button component={Link} to="/" color={'primary'} variant="text" >Cancel</Button>
-    <form
-      autoComplete="off"
-      onSubmit={handleSubmit}
-    > 
-        <CardElement/>
-        <Button disabled={!stripe} type='submit' >Confirm</Button>
-    </form>
+      <Box mx={6} my={3} >
+      <Button component={Link} to="/" color={'primary'} variant="text" >Cancel</Button>
+      <Box sx={{
+          margin: 'auto',
+          my: 3,
+        }}>
+        <form
+          autoComplete="off"
+          onSubmit={handleSubmit}
+        > 
+            <CardElement/>
+            <Button disabled={!stripe} variant="contained" type='submit' sx={{my: 5}} >Confirm Payment</Button>
+        </form>
+        </Box>
+      </Box>
     </>
   );
 }

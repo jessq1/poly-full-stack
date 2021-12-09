@@ -1,10 +1,11 @@
 import { Payment } from '../models/payment'
 import {Profile} from '../models/profile'
-import { Response } from "express";
+import { Request, Response } from "express";
 import { IGetUserAuthInfoRequest } from "../types/express"
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-function create(req: IGetUserAuthInfoRequest, res: Response) {
+function create(expressRequest: Request, res: Response) {
+  const req = expressRequest as IGetUserAuthInfoRequest
   req.body.initiator = req.user.profile
   if (req.body.methodIsPay) {
     req.body.paymentFrom = req.user.profile
@@ -42,8 +43,9 @@ async function createPaymentIntent(payment: any) {
   return payment
 }
 
-function index(req: IGetUserAuthInfoRequest, res: Response) {
-  Payment.find({'completed': false})
+function index(expressRequest: Request, res: Response) {
+  const req = expressRequest as IGetUserAuthInfoRequest
+  Payment.find({'completed': true})
   .populate([
     {
       path: 'initiator',
@@ -63,7 +65,8 @@ function index(req: IGetUserAuthInfoRequest, res: Response) {
   })
 }
 
-function indexPendingPayment(req: IGetUserAuthInfoRequest, res: Response) {
+function indexPendingPayment(expressRequest: Request, res: Response) {
+  const req = expressRequest as IGetUserAuthInfoRequest
   const profileId = req.user.profile
   Payment.find({'initiator': profileId, 'completed': false})
   .populate([
@@ -85,7 +88,8 @@ function indexPendingPayment(req: IGetUserAuthInfoRequest, res: Response) {
   })
 }
 
-function indexIncompletePayment(req: IGetUserAuthInfoRequest, res: Response) {
+function indexIncompletePayment(expressRequest: Request, res: Response) {
+  const req = expressRequest as IGetUserAuthInfoRequest
   const profileId = req.user.profile
   Payment.find({'person': profileId, 'completed': false})
   .populate([
@@ -107,14 +111,19 @@ function indexIncompletePayment(req: IGetUserAuthInfoRequest, res: Response) {
   })
 }
 
-function indexProfilePayment(req: IGetUserAuthInfoRequest, res: Response) {
+//return the 5 most recent payment
+function indexProfilePayment(expressRequest: Request, res: Response) {
+  const req = expressRequest as IGetUserAuthInfoRequest
   const profileId = req.user.profile
   Payment.find({
+    'completed': true,
     $or: [
       { 'paymentFrom': profileId },
       { 'paymentTo': profileId }
     ]
   })
+  .sort({'created': -1})
+  .limit(5)
   .populate([
     {
       path: 'initiator',
@@ -137,7 +146,8 @@ function indexProfilePayment(req: IGetUserAuthInfoRequest, res: Response) {
   })
 }
 
-function getPayemnt(req: IGetUserAuthInfoRequest, res: Response) {
+function getPayemnt(expressRequest: Request, res: Response) {
+  const req = expressRequest as IGetUserAuthInfoRequest
   Payment.findById(req.params.id)
   .populate('initiator').populate('paymentFrom').populate('paymentTo').populate('person')
   .then(payments => {
@@ -145,14 +155,16 @@ function getPayemnt(req: IGetUserAuthInfoRequest, res: Response) {
   })
 }
 
-function deletepayment(req: IGetUserAuthInfoRequest, res: Response) {
+function deletepayment(expressRequest: Request, res: Response) {
+  const req = expressRequest as IGetUserAuthInfoRequest
   Payment.findByIdAndDelete(req.params.id)
   .then(payment => {
     res.json(payment)
   })
 }
 
-function updateStatus(req: IGetUserAuthInfoRequest, res: Response) {
+function updateStatus(expressRequest: Request, res: Response) {
+  const req = expressRequest as IGetUserAuthInfoRequest
   Payment.findByIdAndUpdate(req.params.id, {completed: true})
   .then(updatedPayment => {
     res.json(updatedPayment)

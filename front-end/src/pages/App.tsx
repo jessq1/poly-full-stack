@@ -25,8 +25,6 @@ import NotFound from './NotFound/NotFound';
 import {ThemeProvider} from '@mui/material/styles';
 import { theme } from '../styles/theme';
 
-//types:
-import {IProfile} from '../types/models'
 
 interface infoProps {
   user: any,
@@ -101,24 +99,26 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-        <NavBar title = 'POLY' user={info.user} handleLogout={handleLogout} open={open} handleDrawerOpen={handleDrawerOpen} />
-        <SideNavBar  user={info.user} open={open} handleDrawerClose={handleDrawerClose} >
+        <NavBar title = 'POLY' user={info.user} handleLogout={handleLogout} open={open} handleDrawerOpen={handleDrawerOpen}  />
+        <SideNavBar  user={info.user} userProfile={info.userProfile} open={open} handleDrawerClose={handleDrawerClose} handleVerifyAccount={handleVerifyAccount} verificationLink={info.verificationLink} >
           <Routes>
             <Route path='*' element={<NotFound />} />
 
-            <Route path='/' element={<Landing user={info.user} />} />
+            <Route path='/' element={<Landing user={info.user} userProfile={info.userProfile} /> } />
             <Route path='/signup' element={<Signup history={history} handleSignupOrLogin={handleSignupOrLogin} userProfile={info.userProfile} />} />
             <Route path='/login' element={<Login history={history} handleSignupOrLogin={handleSignupOrLogin} />} />
             <Route path='/stripeauth' element={info.user ? <Auth user={info.user} userProfile={info.userProfile} handleVerifyAccount={handleVerifyAccount} verificationLink={info.verificationLink} />: <Navigate to='/login' /> } />
             <Route path='/users' element={info.user ? <Users userProfile={info.userProfile} handleAddFriend={handleAddFriend} handleRemoveFriend={handleRemoveFriend} /> : <Navigate to='/login' />} />
-            <Route path='/addpayment' element={info.user ? <AddPayment userProfile={info.userProfile}/>: <Navigate to='/login' /> }  />
+            <Route path='/addpayment' element={info.userProfile?.stripeOnboard ? <AddPayment userProfile={info.userProfile}/>: <Navigate to='/' /> }  />
             <Route path='/payments' element={info.user ? <PaymentIndex userProfile={info.userProfile}/>: <Navigate to='/login' /> }  />
             <Route path='/checkout/:id' element={info.user ? <Checkout userProfile={info.userProfile}/>: <Navigate to='/login' /> }  />
             <Route path='/notifications' element={info.user ? <Notification userProfile={info.userProfile} /> : <Navigate to='/login' />  }  />
 
           </Routes>
         </SideNavBar>
+        {info.user? 
         <SpeedAdd />
+        : <></>}
     </ThemeProvider>
   );
 }
