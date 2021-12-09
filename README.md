@@ -46,7 +46,7 @@ The Application utilizes MVC(Model View Controller) architecture pattern. There 
 <img width="1437" alt="3-notifications" src="https://user-images.githubusercontent.com/85958041/145433853-46b70d6e-5665-4a17-8c9c-28c0c5f51459.png">
 
 3. You can add/remove friends in the users page
-   <img width="1144" alt="2-add-remove friend" src="https://user-images.githubusercontent.com/85958041/144761589-193354af-77db-461e-9f26-b8b3a9b7854f.png">
+<img width="1437" alt="4-users" src="https://user-images.githubusercontent.com/85958041/145435157-59838d7b-b37a-4cdb-9593-a9178bf99afe.png">
 
 4. You can pay/request payment from a friend 
    <img width="1435" alt="5-pay" src="https://user-images.githubusercontent.com/85958041/145434254-41631d1f-99d4-4269-b89f-30effa3f4d80.png">
