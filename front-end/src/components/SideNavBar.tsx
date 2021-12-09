@@ -89,7 +89,7 @@ export default function SideNavBar(props: NavProps) {
             child={<MarkEmailUnreadIcon fontSize='large' style={{ fill:`${theme.palette.primary.main}`}} />} />
         </List>
         <Divider />
-          {open ?
+          {(open && user) ?
               <MyProfileBar user={user} userProfile={userProfile} handleVerifyAccount={handleVerifyAccount} verificationLink={verificationLink} /> :
               <></>
         }

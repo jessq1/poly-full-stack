@@ -1,5 +1,5 @@
 import { Profile } from "../models/profile"
-import { Response } from "express";
+import { Request, Response } from "express";
 import { IGetUserAuthInfoRequest } from "../types/express"
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -14,7 +14,8 @@ export {
   unfriend,
 }
 
-function index(req: IGetUserAuthInfoRequest, res: Response) {
+function index(expressRequest: Request, res: Response) {
+  const req = expressRequest as IGetUserAuthInfoRequest
   Profile.find({stripeOnboard: true, _id: { $ne: req.user.profile }})
   .populate('friends')
   .populate('payment')
@@ -23,7 +24,8 @@ function index(req: IGetUserAuthInfoRequest, res: Response) {
   })
 }
 
-function userProfile(req: IGetUserAuthInfoRequest, res: Response) {
+function userProfile(expressRequest: Request, res: Response) {
+  const req = expressRequest as IGetUserAuthInfoRequest
   Profile.findById(req.user?.profile)
   .populate('friends')
   .populate('payment')
@@ -34,7 +36,8 @@ function userProfile(req: IGetUserAuthInfoRequest, res: Response) {
   })
 }
 
-async function stripeAuthLink(req: IGetUserAuthInfoRequest, res: Response) {
+async function stripeAuthLink(expressRequest: Request, res: Response) {
+  const req = expressRequest as IGetUserAuthInfoRequest
   const profile = await Profile.findById(req.user.profile)
 
   const accountLink = await stripe.accountLinks.create({
@@ -59,7 +62,8 @@ async function checkStripeOnboarding(profile: any) {
   return profile
 }
 
-function friend(req: IGetUserAuthInfoRequest, res: Response) {
+function friend(expressRequest: Request, res: Response) {
+  const req = expressRequest as IGetUserAuthInfoRequest
   Profile.findById(req.user.profile)
   .then(profile => {
     profile.friends.push(req.params.id)
@@ -73,7 +77,8 @@ function friend(req: IGetUserAuthInfoRequest, res: Response) {
     })
 }
 
-function unfriend(req: IGetUserAuthInfoRequest, res: Response) {
+function unfriend(expressRequest: Request, res: Response) {
+  const req = expressRequest as IGetUserAuthInfoRequest
   Profile.findById(req.user.profile)
   .populate('friends')
   .populate('payment')

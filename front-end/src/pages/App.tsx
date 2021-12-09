@@ -116,7 +116,9 @@ function App() {
 
           </Routes>
         </SideNavBar>
+        {info.user? 
         <SpeedAdd />
+        : <></>}
     </ThemeProvider>
   );
 }

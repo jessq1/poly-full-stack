@@ -14,7 +14,7 @@ const Landing: React.FC<IProps> = ({user,userProfile}) => {
             <h1>
               hello, {user ? user.firstName : "friend"}
             </h1>
-            {userProfile?.stripeOnboard ? <></> : <h1>To transfer money between freinds you need to verify with stripe</h1> }
+            {(!user || userProfile?.stripeOnboard) ? <></> : <h1>To transfer money between freinds you need to verify with stripe</h1> }
           </main>
   
         </>
