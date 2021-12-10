@@ -1,7 +1,7 @@
 # Poly
 
 ## Project Intro
-Poly is a Peer to peer payment application that allows users to transfer money between friends. Utilizing React, Typescript, Express, and Node.js, poly provide a easy solutions to transfer funds between friends. 
+Poly is a Peer to peer payment application that allows users to transfer money between friends. Utilizing React, Typescript, Express, and Node.js, Poly provides a easy solutions to transfer funds between friends. 
 
 ## Project Repo
 You can access full code for this application in this github repo:
@@ -42,7 +42,7 @@ The Application utilizes MVC(Model View Controller) architecture pattern. There 
 <img width="1434" alt="1-landing" src="https://user-images.githubusercontent.com/85958041/145433441-31e43ca7-a130-41f0-acea-a6c63348ca3a.png">
 <img width="1437" alt="2-verify" src="https://user-images.githubusercontent.com/85958041/145433465-7207be17-520c-4f91-9553-ef2fdae43566.png">
 
-2. After virification, you can use the transaction functionalities. In the notification pannel, you will see pending transactions related to your account. 
+2. After verification, you can use the transaction functionalities. In the notification pannel, you will see pending transactions related to your account. 
 <img width="1437" alt="3-notifications" src="https://user-images.githubusercontent.com/85958041/145433853-46b70d6e-5665-4a17-8c9c-28c0c5f51459.png">
 
 3. You can add/remove friends in the users page
@@ -63,7 +63,7 @@ The Application utilizes MVC(Model View Controller) architecture pattern. There 
 
 ## Live Version
 The website is accessible at  https://poly-p2p.herokuapp.com/
-Currently, the website is under test mode. To test the transactions you can use Stripe's default credit card:
+Currently, the website is under test mode. To test the transactions you can use Stripe's default credit card.
 
 See more details here: https://stripe.com/docs/testing
 To test Stripe Connect, use information here: https://stripe.com/docs/connect/testing
